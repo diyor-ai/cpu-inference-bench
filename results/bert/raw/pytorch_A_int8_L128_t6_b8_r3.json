@@ -1,0 +1,88 @@
+{
+  "framework": "pytorch",
+  "version": "2.14.1+cpu",
+  "precision": "int8",
+  "model": "A",
+  "seq": 128,
+  "threads": 6,
+  "repeat": 3,
+  "execution_check": {
+    "threads_set": 6,
+    "torch_num_threads": 6,
+    "inputs": [
+      "input_ids",
+      "attention_mask"
+    ],
+    "quantized_engine": "x86",
+    "dynamic_quantized_linear": 38,
+    "float_linear_left": 0
+  },
+  "result": {
+    "batch": 8,
+    "iters": 100,
+    "p50_ms": 160.258,
+    "p95_ms": 160.732,
+    "mean_ms": 160.287,
+    "std_ms": 0.303,
+    "min_ms": 159.329,
+    "throughput_img_s": 49.92,
+    "telemetry": {
+      "cooldown": {
+        "start_temp_c": 50.0,
+        "waited_s": 0.0,
+        "timed_out": false
+      },
+      "temp_start_c": 56.0,
+      "temp_end_c": 55.0,
+      "freq_mean_mhz": 2593.0,
+      "freq_min_mhz": 2426.0,
+      "pkg_throttle_delta": 0,
+      "core_throttle_delta": 0,
+      "throttled": false
+    },
+    "max_abs_diff_vs_pytorch_fp32": 0.6908535957336426
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0,2,4,6,8,10,12-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "performance",
+      "2": "performance",
+      "4": "performance",
+      "6": "performance",
+      "8": "performance",
+      "10": "performance"
+    },
+    "scaling_min_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}

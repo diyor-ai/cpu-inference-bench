@@ -1,0 +1,125 @@
+{
+  "framework": "openvino",
+  "version": "2026.4.1-22982-e213a147257-releases/2026/4",
+  "precision": "int8",
+  "model": "A",
+  "seq": 128,
+  "threads": 6,
+  "repeat": 3,
+  "execution_check": {
+    "model_file": "bert_A_L128_int8_ov.xml",
+    "INFERENCE_NUM_THREADS": "6",
+    "NUM_STREAMS": "1",
+    "PERFORMANCE_HINT": "LATENCY",
+    "ENABLE_HYPER_THREADING": "False",
+    "INFERENCE_PRECISION_HINT": "<Type: 'float32'>",
+    "EXECUTION_MODE_HINT": "ExecutionMode.PERFORMANCE",
+    "runtime_layers_by_type_precision": {
+      "Input:i64": 2,
+      "Const:f32": 57,
+      "Convert:i64": 2,
+      "Const:i32": 104,
+      "Gather:f32": 2,
+      "Subgraph:f32": 38,
+      "MVN:f32": 13,
+      "Const:i8": 38,
+      "Transpose:i8": 54,
+      "Const:dynamic": 46,
+      "FullyConnected:u8": 31,
+      "Reshape:i8": 18,
+      "MatMul:i8": 6,
+      "Const:u8": 1,
+      "Eltwise:i32": 1,
+      "Convert:i32": 1,
+      "Reshape:u8": 2,
+      "Gather:u8": 1,
+      "Subgraph:u8": 7,
+      "Softmax:f32": 6,
+      "Eltwise:f32": 6,
+      "MatMul:u8": 6,
+      "Transpose:f32": 6,
+      "Reshape:f32": 6,
+      "FullyConnected:i8": 7,
+      "Output:f32": 1
+    },
+    "runtime_matmul_fc_by_precision": {
+      "FullyConnected:u8": 31,
+      "MatMul:i8": 6,
+      "MatMul:u8": 6,
+      "FullyConnected:i8": 7
+    }
+  },
+  "config": {
+    "performance_hint": "LATENCY",
+    "num_streams": 1,
+    "inference_num_threads": 6
+  },
+  "result": {
+    "batch": 8,
+    "iters": 100,
+    "p50_ms": 70.723,
+    "p95_ms": 71.374,
+    "mean_ms": 70.831,
+    "std_ms": 0.289,
+    "min_ms": 70.459,
+    "throughput_img_s": 113.12,
+    "telemetry": {
+      "cooldown": {
+        "start_temp_c": 48.0,
+        "waited_s": 0.0,
+        "timed_out": false
+      },
+      "temp_start_c": 62.0,
+      "temp_end_c": 64.0,
+      "freq_mean_mhz": 2557.0,
+      "freq_min_mhz": 1028.0,
+      "pkg_throttle_delta": 0,
+      "core_throttle_delta": 0,
+      "throttled": false
+    },
+    "max_abs_diff_vs_pytorch_fp32": 0.05040097236633301
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0,2,4,6,8,10,12-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "performance",
+      "2": "performance",
+      "4": "performance",
+      "6": "performance",
+      "8": "performance",
+      "10": "performance"
+    },
+    "scaling_min_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}

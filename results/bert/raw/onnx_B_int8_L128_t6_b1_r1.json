@@ -1,0 +1,120 @@
+{
+  "framework": "onnxruntime",
+  "version": "1.31.0",
+  "precision": "int8",
+  "model": "B",
+  "seq": 128,
+  "threads": 6,
+  "repeat": 1,
+  "execution_check": {
+    "model_file": "bert_B_int8_ort_dyn.onnx",
+    "optimized_op_counts": {
+      "Shape": 7,
+      "Gather": 16,
+      "Unsqueeze": 19,
+      "Slice": 1,
+      "DequantizeLinear": 3,
+      "Add": 11,
+      "LayerNormalization": 5,
+      "DynamicQuantizeLinear": 4,
+      "MatMulIntegerToFloat": 12,
+      "Concat": 10,
+      "Reshape": 19,
+      "Transpose": 16,
+      "FusedMatMul": 4,
+      "Range": 3,
+      "Cast": 1,
+      "Mul": 1,
+      "Flatten": 1,
+      "GreaterOrEqual": 1,
+      "And": 2,
+      "Equal": 1,
+      "Where": 6,
+      "Expand": 1,
+      "Softmax": 4,
+      "IsNaN": 4,
+      "MatMul": 4,
+      "DynamicQuantizeMatMul": 14,
+      "Gelu": 4,
+      "SkipLayerNormalization": 4,
+      "Tanh": 1
+    },
+    "n_int8_matmul": 26,
+    "n_matmul_integer_unfused": 0,
+    "n_dynamic_quantize_linear": 4,
+    "n_float_matmul_gemm": 8,
+    "intra_op_num_threads": 6,
+    "providers": [
+      "CPUExecutionProvider"
+    ],
+    "onnx": "1.23.2"
+  },
+  "result": {
+    "batch": 1,
+    "iters": 100,
+    "p50_ms": 2.742,
+    "p95_ms": 2.763,
+    "mean_ms": 2.746,
+    "std_ms": 0.028,
+    "min_ms": 2.715,
+    "throughput_img_s": 364.76,
+    "telemetry": {
+      "cooldown": {
+        "start_temp_c": 41.0,
+        "waited_s": 0.0,
+        "timed_out": false
+      },
+      "temp_start_c": 43.0,
+      "temp_end_c": 45.0,
+      "freq_mean_mhz": 2594.0,
+      "freq_min_mhz": 2554.0,
+      "pkg_throttle_delta": 0,
+      "core_throttle_delta": 0,
+      "throttled": false
+    },
+    "max_abs_diff_vs_pytorch_fp32": 0.006546735763549805
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0,2,4,6,8,10,12-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "performance",
+      "2": "performance",
+      "4": "performance",
+      "6": "performance",
+      "8": "performance",
+      "10": "performance"
+    },
+    "scaling_min_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}

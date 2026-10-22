@@ -1,0 +1,37 @@
+model,seq,framework,precision,threads,batch,repeats,p50_ms,min_ms,p95_ms,sent_s,spread_%,freq_mean_mhz,freq_min_mhz,temp_max_c,cooldown_timeouts,throttled,max_abs_diff_fp32,executed,stable
+A,32,onnxruntime,fp32,6,1,5,9.988,9.848,10.152,100.12,1.8,2598,2540.0,45.0,0,False,4.76837158203125e-07,int8mm=0 DynQ=0 floatMM/Gemm=50,True
+A,32,onnxruntime,fp32,6,8,5,56.925,56.547,57.754,140.54,0.5,2595,2532.0,55.0,0,False,1.1920928955078125e-06,int8mm=0 DynQ=0 floatMM/Gemm=50,True
+A,32,onnxruntime,int8,6,1,5,4.677,4.589,4.748,213.81,3.3,2599,2557.0,41.0,0,False,0.012558937072753906,int8mm=38 DynQ=6 floatMM/Gemm=12,True
+A,32,onnxruntime,int8,6,8,5,24.269,23.89,24.463,329.64,0.4,2592,2535.0,49.0,0,False,0.2930300235748291,int8mm=38 DynQ=6 floatMM/Gemm=12,True
+A,32,openvino,fp32,6,1,5,9.631,9.482,9.934,103.83,3.4,2537,1458.0,47.0,0,False,9.5367431640625e-07,"mm/fc={'FullyConnected:f32': 38, 'MatMul:f32': 12} thr=6",True
+A,32,openvino,fp32,6,8,5,54.645,54.339,55.443,146.4,0.2,2579,985.0,58.0,0,False,1.6689300537109375e-06,"mm/fc={'FullyConnected:f32': 38, 'MatMul:f32': 12} thr=6",True
+A,32,openvino,int8,6,1,5,3.288,3.236,3.38,304.14,2.2,2520,1671.0,44.0,0,False,0.006126880645751953,"mm/fc={'FullyConnected:u8': 33, 'MatMul:i8': 6, 'MatMul:u8': 6, 'FullyConnected:i8': 5} thr=6",True
+A,32,openvino,int8,6,8,5,18.232,18.048,18.51,438.79,0.4,2568,1635.0,52.0,0,False,0.042485713958740234,"mm/fc={'FullyConnected:u8': 33, 'MatMul:i8': 6, 'MatMul:u8': 6, 'FullyConnected:i8': 5} thr=6",True
+A,32,pytorch,fp32,6,1,5,11.55,11.374,11.898,86.58,2.6,2544,399.0,40.0,0,False,0.0,engine=- dynQLinear=- floatLinear=-,True
+A,32,pytorch,fp32,6,8,5,61.708,59.673,62.233,129.64,5.0,2594,1135.0,49.0,0,False,0.0,engine=- dynQLinear=- floatLinear=-,False
+A,32,pytorch,int8,6,1,5,7.188,7.041,7.305,139.12,0.5,2596,2534.0,43.0,0,False,0.0796046257019043,engine=x86 dynQLinear=38 floatLinear=0,True
+A,32,pytorch,int8,6,8,5,36.647,36.432,37.094,218.3,0.3,2594,2533.0,51.0,0,False,0.7843793630599976,engine=x86 dynQLinear=38 floatLinear=0,True
+A,128,onnxruntime,fp32,6,1,5,30.703,30.513,30.935,32.57,0.5,2596,2535.0,60.0,0,False,4.76837158203125e-07,int8mm=0 DynQ=0 floatMM/Gemm=50,True
+A,128,onnxruntime,fp32,6,8,5,237.714,233.614,238.982,33.65,0.3,2596,2531.0,62.0,0,True,1.1920928955078125e-06,int8mm=0 DynQ=0 floatMM/Gemm=50,False
+A,128,onnxruntime,int8,6,1,5,13.909,13.708,14.117,71.9,0.5,2593,2531.0,48.0,0,False,0.009060859680175781,int8mm=38 DynQ=6 floatMM/Gemm=12,True
+A,128,onnxruntime,int8,6,8,5,98.114,97.674,98.702,81.54,0.2,2596,2534.0,58.0,0,False,0.2254331111907959,int8mm=38 DynQ=6 floatMM/Gemm=12,True
+A,128,openvino,fp32,6,1,5,29.648,29.444,30.493,33.73,5.1,2570,945.0,55.0,0,False,9.5367431640625e-07,"mm/fc={'FullyConnected:f32': 38, 'MatMul:f32': 12} thr=6",False
+A,128,openvino,fp32,6,8,5,221.008,217.927,225.511,36.2,1.0,2595,1823.0,64.0,0,False,1.430511474609375e-06,"mm/fc={'FullyConnected:f32': 38, 'MatMul:f32': 12} thr=6",True
+A,128,openvino,int8,6,1,5,10.348,10.206,10.6,96.64,0.7,2540,1528.0,51.0,0,False,0.006732463836669922,"mm/fc={'FullyConnected:u8': 31, 'MatMul:i8': 6, 'MatMul:u8': 6, 'FullyConnected:i8': 7} thr=6",True
+A,128,openvino,int8,6,8,5,70.756,70.459,71.395,113.06,0.5,2582,1028.0,64.0,0,False,0.05040097236633301,"mm/fc={'FullyConnected:u8': 31, 'MatMul:i8': 6, 'MatMul:u8': 6, 'FullyConnected:i8': 7} thr=6",True
+A,128,pytorch,fp32,6,1,5,34.146,33.436,34.595,29.29,2.1,2597,2534.0,48.0,0,False,0.0,engine=- dynQLinear=- floatLinear=-,True
+A,128,pytorch,fp32,6,8,5,237.596,228.534,238.343,33.67,4.1,2596,1003.0,60.0,0,False,0.0,engine=- dynQLinear=- floatLinear=-,True
+A,128,pytorch,int8,6,1,5,21.175,21.026,21.512,47.23,0.4,2591,2534.0,49.0,0,False,0.10791349411010742,engine=x86 dynQLinear=38 floatLinear=0,True
+A,128,pytorch,int8,6,8,5,160.476,158.819,161.124,49.85,1.8,2594,2376.0,56.0,0,False,0.6908535957336426,engine=x86 dynQLinear=38 floatLinear=0,True
+B,128,onnxruntime,fp32,6,1,5,3.837,3.799,3.862,260.62,0.7,2593,2537.0,53.0,0,False,4.76837158203125e-07,int8mm=0 DynQ=0 floatMM/Gemm=34,True
+B,128,onnxruntime,fp32,6,8,5,23.819,23.534,24.079,335.87,0.5,2594,2537.0,61.0,0,False,1.0728836059570312e-06,int8mm=0 DynQ=0 floatMM/Gemm=34,True
+B,128,onnxruntime,int8,6,1,5,2.738,2.709,2.763,365.23,0.3,2598,2554.0,48.0,0,False,0.006546735763549805,int8mm=26 DynQ=4 floatMM/Gemm=8,True
+B,128,onnxruntime,int8,6,8,5,13.976,13.87,14.2,572.41,0.4,2592,2536.0,47.0,0,False,0.1319001317024231,int8mm=26 DynQ=4 floatMM/Gemm=8,True
+B,128,openvino,fp32,6,1,5,3.033,2.998,3.142,329.71,3.6,2523,1648.0,52.0,0,False,2.384185791015625e-07,"mm/fc={'FullyConnected:f32': 26, 'MatMul:f32': 8} thr=6",True
+B,128,openvino,fp32,6,8,5,18.78,18.57,19.292,425.99,0.5,2562,894.0,53.0,0,False,1.6689300537109375e-06,"mm/fc={'FullyConnected:f32': 24, 'MatMul:f32': 8} thr=6",True
+B,128,openvino,int8,6,1,5,1.565,1.511,1.596,638.98,2.7,2514,2019.0,48.0,0,False,0.0035288333892822266,"mm/fc={'FullyConnected:u8': 19, 'MatMul:i8': 4, 'MatMul:u8': 4, 'FullyConnected:i8': 7} thr=6",True
+B,128,openvino,int8,6,8,5,8.305,8.174,8.39,963.28,0.9,2572,1868.0,51.0,0,False,0.07646298408508301,"mm/fc={'FullyConnected:u8': 19, 'MatMul:i8': 4, 'MatMul:u8': 4, 'FullyConnected:i8': 7} thr=6",True
+B,128,pytorch,fp32,6,1,5,4.763,4.649,4.859,209.95,0.6,2597,2533.0,51.0,0,False,0.0,engine=- dynQLinear=- floatLinear=-,True
+B,128,pytorch,fp32,6,8,5,23.241,22.503,23.59,344.22,7.8,2594,1908.0,53.0,0,False,0.0,engine=- dynQLinear=- floatLinear=-,False
+B,128,pytorch,int8,6,1,5,4.343,4.229,4.388,230.26,0.6,2600,2600.0,49.0,0,False,0.040993452072143555,engine=x86 dynQLinear=26 floatLinear=0,True
+B,128,pytorch,int8,6,8,5,22.001,21.296,22.352,363.62,7.3,2597,2537.0,47.0,0,False,0.28380537033081055,engine=x86 dynQLinear=26 floatLinear=0,False
