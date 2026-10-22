@@ -17,3 +17,4 @@ results/archive_*/
 results/pilot/
 results/stage2_smoke/
 results/profile/raw/ort_profile_*.json
+results/bert_smoke/

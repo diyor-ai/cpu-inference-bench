@@ -71,3 +71,29 @@ def make_inputs(name, seq, batch):
     s, _ = read_split("validation")
     enc, _ = encode(name, s[:batch], seq)
     return enc
+
+
+def bert_args():
+    """Timing-script args: like common.common_args plus --model and --seq."""
+    import argparse
+    from common import RESULTS as R
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--model", choices=list(MODELS), required=True)
+    ap.add_argument("--seq", type=int, required=True)
+    ap.add_argument("--threads", type=int, required=True)
+    ap.add_argument("--batch", type=int, required=True)
+    ap.add_argument("--repeat", type=int, required=True, help="repeat index (one process = one repeat)")
+    ap.add_argument("--iters", type=int, default=100)
+    ap.add_argument("--precision", choices=["fp32", "int8"], default="fp32")
+    ap.add_argument("--out", default=str(R / "bert"))
+    return ap.parse_args()
+
+
+def reference_logits(name, x):
+    """FP32 PyTorch logits for the dict of numpy inputs x (single-process reference, for max-abs-diff)."""
+    import sys, torch
+    sys.path.insert(0, str(Path(__file__).parent / "quant"))
+    from bert_pt_int8 import fp32
+    m = fp32(name)
+    with torch.inference_mode():
+        return m(*[torch.from_numpy(x[k]) for k in MODELS[name]["inputs"]]).numpy()
