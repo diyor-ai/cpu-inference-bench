@@ -1,0 +1,306 @@
+{
+  "framework": "pytorch",
+  "version": "2.14.1+cpu",
+  "precision": "fp32",
+  "batch": 32,
+  "threads": 6,
+  "PROFILED_NOT_TIMING": true,
+  "result": {
+    "iters": 20,
+    "profiled_wall_ms_per_iter": 389.208,
+    "sum_self_cpu_ms_per_iter": 375.837,
+    "group_self_cpu_ms_per_iter": {
+      "conv": 303.58,
+      "other": 72.107,
+      "linear": 0.151
+    },
+    "group_share_pct": {
+      "conv": 80.8,
+      "other": 19.2,
+      "linear": 0.0
+    },
+    "ops": [
+      {
+        "name": "aten::mkldnn_convolution",
+        "count": 400,
+        "self_cpu_us_total": 6067336.508999993,
+        "cpu_us_total": 6071045.124999995,
+        "group": "conv"
+      },
+      {
+        "name": "aten::max_pool2d_with_indices",
+        "count": 20,
+        "self_cpu_us_total": 752554.9839999992,
+        "cpu_us_total": 752554.9839999992,
+        "group": "other"
+      },
+      {
+        "name": "aten::native_batch_norm",
+        "count": 400,
+        "self_cpu_us_total": 338526.57499998173,
+        "cpu_us_total": 340303.24199999217,
+        "group": "other"
+      },
+      {
+        "name": "aten::clamp_min_",
+        "count": 340,
+        "self_cpu_us_total": 204067.43099999562,
+        "cpu_us_total": 204067.43099999562,
+        "group": "other"
+      },
+      {
+        "name": "aten::add_",
+        "count": 160,
+        "self_cpu_us_total": 114082.1130000006,
+        "cpu_us_total": 114082.1130000006,
+        "group": "other"
+      },
+      {
+        "name": "aten::max_pool2d",
+        "count": 20,
+        "self_cpu_us_total": 20591.116000000526,
+        "cpu_us_total": 773146.0999999999,
+        "group": "other"
+      },
+      {
+        "name": "aten::empty",
+        "count": 3200,
+        "self_cpu_us_total": 3912.2440000048127,
+        "cpu_us_total": 3912.2440000048127,
+        "group": "other"
+      },
+      {
+        "name": "aten::addmm",
+        "count": 20,
+        "self_cpu_us_total": 2940.751000000164,
+        "cpu_us_total": 3365.026000000711,
+        "group": "linear"
+      },
+      {
+        "name": "aten::_batch_norm_impl_index",
+        "count": 400,
+        "self_cpu_us_total": 2280.6550000053976,
+        "cpu_us_total": 342956.78299999866,
+        "group": "other"
+      },
+      {
+        "name": "aten::_convolution",
+        "count": 400,
+        "self_cpu_us_total": 2059.9460000043327,
+        "cpu_us_total": 6073105.0709999995,
+        "group": "conv"
+      },
+      {
+        "name": "aten::as_strided_",
+        "count": 400,
+        "self_cpu_us_total": 1275.8209999987157,
+        "cpu_us_total": 1275.8209999987157,
+        "group": "other"
+      },
+      {
+        "name": "aten::convolution",
+        "count": 400,
+        "self_cpu_us_total": 1179.2399999985064,
+        "cpu_us_total": 6074284.310999998,
+        "group": "conv"
+      },
+      {
+        "name": "aten::conv2d",
+        "count": 400,
+        "self_cpu_us_total": 1030.1709999994855,
+        "cpu_us_total": 6075314.481999997,
+        "group": "conv"
+      },
+      {
+        "name": "aten::batch_norm",
+        "count": 400,
+        "self_cpu_us_total": 944.244000000217,
+        "cpu_us_total": 343901.02699999884,
+        "group": "other"
+      },
+      {
+        "name": "aten::sum",
+        "count": 20,
+        "self_cpu_us_total": 768.8130000006058,
+        "cpu_us_total": 919.1119999998482,
+        "group": "other"
+      },
+      {
+        "name": "aten::relu_",
+        "count": 340,
+        "self_cpu_us_total": 740.7400000055859,
+        "cpu_us_total": 204808.1710000012,
+        "group": "other"
+      },
+      {
+        "name": "aten::copy_",
+        "count": 40,
+        "self_cpu_us_total": 414.81399999948917,
+        "cpu_us_total": 414.81399999948917,
+        "group": "other"
+      },
+      {
+        "name": "aten::empty_like",
+        "count": 400,
+        "self_cpu_us_total": 374.0110000101122,
+        "cpu_us_total": 1283.97200000484,
+        "group": "other"
+      },
+      {
+        "name": "aten::div_",
+        "count": 20,
+        "self_cpu_us_total": 334.6240000028047,
+        "cpu_us_total": 605.704000001715,
+        "group": "other"
+      },
+      {
+        "name": "aten::resize_",
+        "count": 400,
+        "self_cpu_us_total": 296.093000000692,
+        "cpu_us_total": 296.093000000692,
+        "group": "other"
+      },
+      {
+        "name": "aten::fill_",
+        "count": 20,
+        "self_cpu_us_total": 150.29899999924237,
+        "cpu_us_total": 150.29899999924237,
+        "group": "other"
+      },
+      {
+        "name": "aten::mean",
+        "count": 20,
+        "self_cpu_us_total": 144.90999999811174,
+        "cpu_us_total": 1669.725999999675,
+        "group": "other"
+      },
+      {
+        "name": "aten::t",
+        "count": 20,
+        "self_cpu_us_total": 117.4589999988093,
+        "cpu_us_total": 217.56700000003912,
+        "group": "other"
+      },
+      {
+        "name": "aten::_to_copy",
+        "count": 20,
+        "self_cpu_us_total": 99.1589999999851,
+        "cpu_us_total": 237.154999998922,
+        "group": "other"
+      },
+      {
+        "name": "aten::linear",
+        "count": 20,
+        "self_cpu_us_total": 72.066999999166,
+        "cpu_us_total": 3654.659999999916,
+        "group": "linear"
+      },
+      {
+        "name": "aten::expand",
+        "count": 20,
+        "self_cpu_us_total": 67.83599999867147,
+        "cpu_us_total": 77.70199999993201,
+        "group": "other"
+      },
+      {
+        "name": "aten::adaptive_avg_pool2d",
+        "count": 20,
+        "self_cpu_us_total": 62.83800000138581,
+        "cpu_us_total": 1732.5640000010608,
+        "group": "other"
+      },
+      {
+        "name": "aten::empty_strided",
+        "count": 20,
+        "self_cpu_us_total": 61.68200000055367,
+        "cpu_us_total": 61.68200000055367,
+        "group": "other"
+      },
+      {
+        "name": "aten::as_strided",
+        "count": 40,
+        "self_cpu_us_total": 57.891000001051,
+        "cpu_us_total": 57.891000001051,
+        "group": "other"
+      },
+      {
+        "name": "aten::flatten",
+        "count": 20,
+        "self_cpu_us_total": 57.26800000149524,
+        "cpu_us_total": 109.76100000092993,
+        "group": "other"
+      },
+      {
+        "name": "aten::view",
+        "count": 20,
+        "self_cpu_us_total": 52.49299999943469,
+        "cpu_us_total": 52.49299999943469,
+        "group": "other"
+      },
+      {
+        "name": "aten::transpose",
+        "count": 20,
+        "self_cpu_us_total": 52.08300000143936,
+        "cpu_us_total": 100.10800000122981,
+        "group": "other"
+      },
+      {
+        "name": "aten::to",
+        "count": 20,
+        "self_cpu_us_total": 33.92499999998836,
+        "cpu_us_total": 271.07999999891035,
+        "group": "other"
+      },
+      {
+        "name": "aten::resolve_conj",
+        "count": 40,
+        "self_cpu_us_total": 8.072999999509193,
+        "cpu_us_total": 8.072999999509193,
+        "group": "other"
+      }
+    ]
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0,2,4,6,8,10,12-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "performance",
+      "2": "performance",
+      "4": "performance",
+      "6": "performance",
+      "8": "performance",
+      "10": "performance"
+    },
+    "scaling_min_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "framework": "onnxruntime",
+  "version": "1.31.0",
+  "precision": "fp32",
+  "model": "resnet18",
+  "threads": 6,
+  "repeat": 4,
+  "result": {
+    "batch": 32,
+    "iters": 100,
+    "p50_ms": 244.717,
+    "p95_ms": 245.353,
+    "mean_ms": 244.832,
+    "std_ms": 0.698,
+    "min_ms": 244.212,
+    "throughput_img_s": 130.76,
+    "telemetry": {
+      "cooldown": {
+        "start_temp_c": 57.0,
+        "waited_s": 0.0,
+        "timed_out": false
+      },
+      "temp_start_c": 64.0,
+      "temp_end_c": 64.0,
+      "freq_mean_mhz": 2596.0,
+      "freq_min_mhz": 2532.0,
+      "pkg_throttle_delta": 0,
+      "core_throttle_delta": 0,
+      "throttled": false
+    },
+    "max_abs_diff_vs_pytorch": 3.4570693969726562e-06
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0,2,4,6,8,10,12-15",
+    "no_turbo": "0",
+    "scaling_min_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}

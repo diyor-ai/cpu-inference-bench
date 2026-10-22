@@ -1,0 +1,19 @@
+framework,precision,threads,batch,repeats,p50_ms,min_ms,p95_ms,img_s,spread_%,freq_mean_mhz,freq_min_mhz,temp_max_c,cooldown_timeouts,throttled,max_abs_diff,executed,stable
+onnxruntime,fp32,6,1,5,8.875,8.758,8.923,112.68,1.4,2594,2535.0,53.0,0,False,3.814697265625e-06,int8conv=0 floatconv=20,True
+onnxruntime,fp32,6,8,5,61.767,61.471,62.066,129.52,1.9,2595,2531.0,61.0,0,False,4.589557647705078e-06,int8conv=0 floatconv=20,True
+onnxruntime,fp32,6,32,5,244.576,244.087,246.017,130.84,2.8,2596,2529.0,64.0,0,False,6.377696990966797e-06,int8conv=0 floatconv=20,True
+onnxruntime,int8,6,1,5,3.235,3.181,3.301,309.12,1.0,2600,2600.0,51.0,0,False,0.38104677200317383,int8conv=20 floatconv=0,True
+onnxruntime,int8,6,8,5,21.099,20.982,21.298,379.16,0.9,2600,2600.0,58.0,0,False,0.5180296897888184,int8conv=20 floatconv=0,True
+onnxruntime,int8,6,32,5,81.701,81.22,81.919,391.67,0.2,2599,2492.0,64.0,0,False,0.7737016677856445,int8conv=20 floatconv=0,True
+openvino,fp32,6,1,5,9.01,8.602,9.402,110.99,2.3,2555,1111.0,55.0,0,False,6.4373016357421875e-06,conv={'Convolution:f32': 20} thr=6,True
+openvino,fp32,6,8,5,71.287,62.891,72.358,112.22,9.5,2585,1681.0,60.0,0,False,6.67572021484375e-06,conv={'Convolution:f32': 20} thr=6,False
+openvino,fp32,6,32,5,259.325,249.07,282.916,123.4,3.0,2591,453.0,64.0,0,False,9.059906005859375e-06,conv={'Convolution:f32': 20} thr=6,True
+openvino,int8,6,1,5,2.59,2.559,2.719,386.1,0.2,2589,2417.0,52.0,0,False,0.25950539112091064,conv={'Convolution:u8': 20} thr=6,True
+openvino,int8,6,8,5,18.948,18.705,19.526,422.21,0.3,2587,1997.0,59.0,0,False,0.3064534664154053,conv={'Convolution:u8': 20} thr=6,True
+openvino,int8,6,32,5,73.394,72.661,74.322,436.0,0.2,2597,2109.0,63.0,0,False,0.44944220781326294,conv={'Convolution:u8': 20} thr=6,True
+pytorch,fp32,6,1,5,13.624,13.422,13.981,73.4,2.7,2596,2538.0,49.0,0,False,0.0,engine=- qconv/linear=-,True
+pytorch,fp32,6,8,5,91.105,84.237,93.328,87.81,5.9,2596,2369.0,60.0,0,False,0.0,engine=- qconv/linear=-,False
+pytorch,fp32,6,32,5,420.309,411.994,424.112,76.13,2.0,2596,2386.0,61.0,0,False,0.0,engine=- qconv/linear=-,True
+pytorch,int8,6,1,5,5.814,5.77,5.856,172.0,0.4,2598,2559.0,52.0,0,False,0.6220967769622803,engine=x86 qconv/linear=21,True
+pytorch,int8,6,8,5,39.31,39.138,39.671,203.51,0.8,2595,2534.0,60.0,0,False,0.8163166046142578,engine=x86 qconv/linear=21,True
+pytorch,int8,6,32,5,153.917,153.238,154.251,207.9,0.5,2596,2530.0,62.0,0,False,0.948114275932312,engine=x86 qconv/linear=21,True

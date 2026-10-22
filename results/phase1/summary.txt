@@ -1,0 +1,21 @@
+  framework precision  threads  batch  repeats  p50_ms  min_ms  p95_ms  img_s  spread_%  freq_mean_mhz  freq_min_mhz  temp_max_c  cooldown_timeouts  throttled  max_abs_diff  stable
+onnxruntime      fp32        6      1        5   8.874   8.832   8.933 112.69       0.4           2594        2532.0        51.0                  0      False      0.000002    True
+onnxruntime      fp32        6      8        5  61.755  61.461  62.076 129.54       1.2           2596        2531.0        61.0                  0      False      0.000003    True
+onnxruntime      fp32        6     32        5 244.662 244.191 245.544 130.79       2.7           2596        2532.0        64.0                  0      False      0.000003    True
+   openvino      fp32        6      1        5   8.962   8.604   9.569 111.58       3.2           2575        1717.0        52.0                  0      False      0.000004    True
+   openvino      fp32        6      8        5  71.164  62.647  72.167 112.42       6.9           2593        1993.0        58.0                  0      False      0.000005   False
+   openvino      fp32        6     32        5 258.323 248.099 280.253 123.88       1.0           2586         398.0        65.0                  0      False      0.000007    True
+    pytorch      fp32        6      1        5  13.513  13.173  13.883  74.00       4.7           2596        2535.0        49.0                  0      False           NaN    True
+    pytorch      fp32        6      8        5  94.786  92.237  95.341  84.40       2.5           2595        2382.0        57.0                  0      False           NaN    True
+    pytorch      fp32        6     32        5 429.042 424.384 431.460  74.58       1.0           2596        2373.0        60.0                  0      False           NaN    True
+
+stable = spread < 5.0% across repeats, not throttled, >= 5 repeats
+1 of 9 rows UNSTABLE (flagged, not hidden)
+
+  framework precision  threads  batch speedup_vs_pytorch
+onnxruntime      fp32        6      1               1.52
+   openvino      fp32        6      1               1.51
+onnxruntime      fp32        6      8               1.53
+   openvino      fp32        6      8     n/a (unstable)
+onnxruntime      fp32        6     32               1.75
+   openvino      fp32        6     32               1.66

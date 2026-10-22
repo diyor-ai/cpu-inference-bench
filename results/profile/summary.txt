@@ -1,0 +1,28 @@
+== Share of profiled time by group (%) and total profiled ms/iter (profiler ON; not comparable with timing tables) ==
+framework    prec  batch  conv%  linear%  q/dq%  other%   conv ms  total ms
+onnxruntime  fp32      1   98.2      0.8    0.0     1.0      8.87      9.04
+onnxruntime  int8      1   89.1      0.7    0.8     9.4      3.17      3.56
+openvino     fp32      1   97.2      0.8    0.8     1.2      8.98      9.24
+openvino     int8      1   93.7      0.7    1.7     3.9      2.55      2.73
+pytorch      fp32      1   84.4      0.5    0.0    15.1     11.80     13.99
+pytorch      int8      1   94.4      0.3    0.3     5.0      5.18      5.48
+onnxruntime  fp32     32   98.5      0.1    0.0     1.4    242.35    246.04
+onnxruntime  int8     32   92.2      0.1    0.8     6.9     74.95     81.26
+openvino     fp32     32   97.7      0.1    0.6     1.7    252.36    258.42
+openvino     int8     32   96.8      0.1    0.6     2.5     69.86     72.17
+pytorch      fp32     32   80.8      0.0    0.0    19.2    303.58    375.84
+pytorch      int8     32   97.1      0.0    0.5     2.3    150.43    154.88
+
+== Kernel / implementation names actually reported ==
+onnxruntime fp32 b1: node op types (calls per iter): [('Conv', 20), ('Gemm', 1), ('MaxPool', 1), ('GlobalAveragePool', 1), ('ReorderOutput', 1), ('Flatten', 1)]
+onnxruntime fp32 b32: node op types (calls per iter): [('Conv', 20), ('MaxPool', 1), ('Gemm', 1), ('GlobalAveragePool', 1), ('ReorderOutput', 1), ('Flatten', 1)]
+onnxruntime int8 b1: node op types (calls per iter): [('QLinearConv', 20), ('QLinearAdd', 8), ('NhwcMaxPool', 1), ('Transpose', 2), ('QGemm', 1), ('QuantizeLinear', 1)]
+onnxruntime int8 b32: node op types (calls per iter): [('QLinearConv', 20), ('NhwcMaxPool', 1), ('QLinearAdd', 8), ('Transpose', 2), ('QuantizeLinear', 1), ('QGemm', 1)]
+openvino fp32 b1: Convolution|brgconv_avx2_f32 x17 (8.85 ms); Convolution|brgconv_avx2_1x1_f32 x3 (0.14 ms); MaxPool|jit_avx2_f32 x1 (0.09 ms); Reorder|jit_uni_f32 x1 (0.08 ms); FullyConnected|gemm_mlas_f32 x1 (0.07 ms); ReduceMean|jit_avx2_f32 x1 (0.02 ms); Parameter|unknown_f32 x1 (0.00 ms)
+openvino fp32 b32: Convolution|brgconv_avx2_f32 x17 (248.96 ms); MaxPool|jit_avx2_f32 x1 (4.09 ms); Convolution|brgconv_avx2_1x1_f32 x3 (3.40 ms); Reorder|jit_uni_f32 x1 (1.46 ms); ReduceMean|jit_avx2_f32 x1 (0.33 ms); FullyConnected|gemm_mlas_f32 x1 (0.17 ms); Parameter|unknown_f32 x1 (0.00 ms)
+openvino int8 b1: Convolution|brgconv_avx2_I8 x16 (2.18 ms); Convolution|jit_avx2_I8 x1 (0.32 ms); Convolution|brgconv_avx2_1x1_I8 x3 (0.05 ms); Subgraph|jit_avx2_f32 x1 (0.05 ms); MaxPool|jit_avx2_I8 x1 (0.05 ms); Reorder|jit_uni_I8 x1 (0.04 ms); FullyConnectedQuantizedLegacy|brgemm_avx2_I8 x1 (0.02 ms)
+openvino int8 b32: Convolution|brgconv_avx2_I8 x16 (61.52 ms); Convolution|jit_avx2_I8 x1 (7.32 ms); Convolution|brgconv_avx2_1x1_I8 x3 (1.02 ms); Subgraph|jit_avx2_f32 x1 (0.80 ms); MaxPool|jit_avx2_I8 x1 (0.69 ms); Reorder|jit_uni_I8 x1 (0.43 ms); ReduceMean|jit_avx2_I8 x1 (0.30 ms)
+pytorch fp32 b1: conv/linear/q ops (name, calls per iter): [('aten::mkldnn_convolution', 20), ('aten::addmm', 1), ('aten::_convolution', 20), ('aten::convolution', 20), ('aten::conv2d', 20)]
+pytorch fp32 b32: conv/linear/q ops (name, calls per iter): [('aten::mkldnn_convolution', 20), ('aten::addmm', 1), ('aten::_convolution', 20), ('aten::convolution', 20), ('aten::conv2d', 20)]
+pytorch int8 b1: conv/linear/q ops (name, calls per iter): [('quantized::conv2d', 11), ('quantized::conv2d_relu', 9), ('aten::quantize_per_tensor', 1), ('quantized::linear', 1), ('aten::dequantize', 1)]
+pytorch int8 b32: conv/linear/q ops (name, calls per iter): [('quantized::conv2d', 11), ('quantized::conv2d_relu', 9), ('aten::quantize_per_tensor', 1), ('quantized::linear', 1), ('aten::dequantize', 1)]

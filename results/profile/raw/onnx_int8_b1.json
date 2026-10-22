@@ -1,0 +1,134 @@
+{
+  "framework": "onnxruntime",
+  "version": "1.31.0",
+  "precision": "int8",
+  "batch": 1,
+  "threads": 6,
+  "PROFILED_NOT_TIMING": true,
+  "result": {
+    "iters": 50,
+    "profiled_model_run_ms_per_iter": 3.686,
+    "sum_node_kernel_ms_per_iter": 3.562,
+    "n_node_events": 1800,
+    "group_ms_per_iter": {
+      "conv": 3.174,
+      "other": 0.334,
+      "linear": 0.025,
+      "quantize/dequantize": 0.03
+    },
+    "group_share_pct": {
+      "conv": 89.1,
+      "other": 9.4,
+      "linear": 0.7,
+      "quantize/dequantize": 0.8
+    },
+    "ops": [
+      {
+        "op_type": "QLinearConv",
+        "provider": "CPUExecutionProvider",
+        "count": 1000,
+        "dur_us_total": 158680,
+        "group": "conv"
+      },
+      {
+        "op_type": "QLinearAdd",
+        "provider": "CPUExecutionProvider",
+        "count": 400,
+        "dur_us_total": 8088,
+        "group": "other"
+      },
+      {
+        "op_type": "NhwcMaxPool",
+        "provider": "CPUExecutionProvider",
+        "count": 50,
+        "dur_us_total": 4962,
+        "group": "other"
+      },
+      {
+        "op_type": "Transpose",
+        "provider": "CPUExecutionProvider",
+        "count": 100,
+        "dur_us_total": 2922,
+        "group": "other"
+      },
+      {
+        "op_type": "QGemm",
+        "provider": "CPUExecutionProvider",
+        "count": 50,
+        "dur_us_total": 1274,
+        "group": "linear"
+      },
+      {
+        "op_type": "QuantizeLinear",
+        "provider": "CPUExecutionProvider",
+        "count": 50,
+        "dur_us_total": 1151,
+        "group": "quantize/dequantize"
+      },
+      {
+        "op_type": "QLinearGlobalAveragePool",
+        "provider": "CPUExecutionProvider",
+        "count": 50,
+        "dur_us_total": 440,
+        "group": "other"
+      },
+      {
+        "op_type": "DequantizeLinear",
+        "provider": "CPUExecutionProvider",
+        "count": 50,
+        "dur_us_total": 336,
+        "group": "quantize/dequantize"
+      },
+      {
+        "op_type": "Flatten",
+        "provider": "CPUExecutionProvider",
+        "count": 50,
+        "dur_us_total": 271,
+        "group": "other"
+      }
+    ]
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0,2,4,6,8,10,12-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "performance",
+      "2": "performance",
+      "4": "performance",
+      "6": "performance",
+      "8": "performance",
+      "10": "performance"
+    },
+    "scaling_min_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}

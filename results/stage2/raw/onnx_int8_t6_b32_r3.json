@@ -1,0 +1,119 @@
+{
+  "framework": "onnxruntime",
+  "version": "1.31.0",
+  "precision": "int8",
+  "weights": "IMAGENET1K_V1",
+  "model": "resnet18",
+  "threads": 6,
+  "repeat": 3,
+  "execution_check": {
+    "model_file": "resnet18_pretrained_int8_ort_minmax.onnx",
+    "optimized_op_counts": {
+      "QuantizeLinear": 1,
+      "Transpose": 2,
+      "QLinearConv": 20,
+      "NhwcMaxPool": 1,
+      "QLinearAdd": 8,
+      "QLinearGlobalAveragePool": 1,
+      "Flatten": 1,
+      "QGemm": 1,
+      "DequantizeLinear": 1
+    },
+    "n_int8_conv": 20,
+    "n_int8_matmul": 1,
+    "n_float_conv": 0,
+    "n_quantize_dequantize": 2,
+    "intra_op_num_threads": 6,
+    "providers": [
+      "CPUExecutionProvider"
+    ],
+    "onnx": "1.23.2",
+    "quantization": {
+      "onnxruntime": "1.31.0",
+      "onnx": "1.23.2",
+      "calibration": "minmax",
+      "calib_images": 300,
+      "format": "QDQ",
+      "weights": "QInt8 per-channel symmetric",
+      "activations": "QUInt8 asymmetric",
+      "op_counts": {
+        "DequantizeLinear": 75,
+        "QuantizeLinear": 33,
+        "Conv": 20,
+        "MaxPool": 1,
+        "Add": 8,
+        "GlobalAveragePool": 1,
+        "Flatten": 1,
+        "Gemm": 1
+      }
+    }
+  },
+  "result": {
+    "batch": 32,
+    "iters": 100,
+    "p50_ms": 81.789,
+    "p95_ms": 81.969,
+    "mean_ms": 81.751,
+    "std_ms": 0.172,
+    "min_ms": 81.431,
+    "throughput_img_s": 391.25,
+    "telemetry": {
+      "cooldown": {
+        "start_temp_c": 57.0,
+        "waited_s": 0.0,
+        "timed_out": false
+      },
+      "temp_start_c": 61.0,
+      "temp_end_c": 64.0,
+      "freq_mean_mhz": 2598.0,
+      "freq_min_mhz": 2492.0,
+      "pkg_throttle_delta": 0,
+      "core_throttle_delta": 0,
+      "throttled": false
+    },
+    "max_abs_diff_vs_pytorch_fp32": 0.7737016677856445
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0,2,4,6,8,10,12-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "performance",
+      "2": "performance",
+      "4": "performance",
+      "6": "performance",
+      "8": "performance",
+      "10": "performance"
+    },
+    "scaling_min_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}

@@ -1,0 +1,224 @@
+{
+  "framework": "pytorch",
+  "version": "2.14.1+cpu",
+  "precision": "int8",
+  "batch": 32,
+  "threads": 6,
+  "PROFILED_NOT_TIMING": true,
+  "result": {
+    "iters": 20,
+    "profiled_wall_ms_per_iter": 156.362,
+    "sum_self_cpu_ms_per_iter": 154.877,
+    "group_self_cpu_ms_per_iter": {
+      "conv": 150.427,
+      "other": 3.582,
+      "quantize/dequantize": 0.807,
+      "linear": 0.061
+    },
+    "group_share_pct": {
+      "conv": 97.1,
+      "other": 2.3,
+      "quantize/dequantize": 0.5,
+      "linear": 0.0
+    },
+    "ops": [
+      {
+        "name": "quantized::conv2d",
+        "count": 220,
+        "self_cpu_us_total": 1510740.3170000045,
+        "cpu_us_total": 1511738.0640000023,
+        "group": "conv"
+      },
+      {
+        "name": "quantized::conv2d_relu",
+        "count": 180,
+        "self_cpu_us_total": 1497797.8379999986,
+        "cpu_us_total": 1509231.1709999994,
+        "group": "conv"
+      },
+      {
+        "name": "quantized::add_relu",
+        "count": 160,
+        "self_cpu_us_total": 37735.69799999592,
+        "cpu_us_total": 38165.2509999992,
+        "group": "other"
+      },
+      {
+        "name": "aten::quantized_max_pool2d",
+        "count": 20,
+        "self_cpu_us_total": 19512.137999999322,
+        "cpu_us_total": 19591.421999999417,
+        "group": "other"
+      },
+      {
+        "name": "aten::quantize_per_tensor",
+        "count": 20,
+        "self_cpu_us_total": 15988.694999999549,
+        "cpu_us_total": 16025.679999999622,
+        "group": "quantize/dequantize"
+      },
+      {
+        "name": "aten::clone",
+        "count": 20,
+        "self_cpu_us_total": 10111.553000000029,
+        "cpu_us_total": 10171.55499999999,
+        "group": "other"
+      },
+      {
+        "name": "aten::empty",
+        "count": 440,
+        "self_cpu_us_total": 1353.321999998578,
+        "cpu_us_total": 1353.321999998578,
+        "group": "other"
+      },
+      {
+        "name": "quantized::linear",
+        "count": 20,
+        "self_cpu_us_total": 1222.4749999994237,
+        "cpu_us_total": 1327.5399999994843,
+        "group": "linear"
+      },
+      {
+        "name": "aten::_empty_affine_quantized",
+        "count": 640,
+        "self_cpu_us_total": 1211.8929999988347,
+        "cpu_us_total": 1211.8929999988347,
+        "group": "other"
+      },
+      {
+        "name": "aten::_adaptive_avg_pool2d",
+        "count": 20,
+        "self_cpu_us_total": 604.3149999988964,
+        "cpu_us_total": 647.616000000533,
+        "group": "other"
+      },
+      {
+        "name": "aten::item",
+        "count": 360,
+        "self_cpu_us_total": 327.43999999866145,
+        "cpu_us_total": 450.85699999797384,
+        "group": "other"
+      },
+      {
+        "name": "aten::dequantize",
+        "count": 20,
+        "self_cpu_us_total": 154.55300000068382,
+        "cpu_us_total": 168.56800000046496,
+        "group": "quantize/dequantize"
+      },
+      {
+        "name": "aten::q_scale",
+        "count": 1000,
+        "self_cpu_us_total": 154.16700000707988,
+        "cpu_us_total": 154.16700000707988,
+        "group": "other"
+      },
+      {
+        "name": "aten::_local_scalar_dense",
+        "count": 360,
+        "self_cpu_us_total": 123.4169999993124,
+        "cpu_us_total": 123.4169999993124,
+        "group": "other"
+      },
+      {
+        "name": "aten::q_zero_point",
+        "count": 1000,
+        "self_cpu_us_total": 110.2179999994155,
+        "cpu_us_total": 110.2179999994155,
+        "group": "other"
+      },
+      {
+        "name": "aten::qscheme",
+        "count": 540,
+        "self_cpu_us_total": 69.31000000001336,
+        "cpu_us_total": 69.31000000001336,
+        "group": "other"
+      },
+      {
+        "name": "aten::view",
+        "count": 20,
+        "self_cpu_us_total": 68.36600000056205,
+        "cpu_us_total": 68.36600000056205,
+        "group": "other"
+      },
+      {
+        "name": "aten::flatten",
+        "count": 20,
+        "self_cpu_us_total": 58.061999998026295,
+        "cpu_us_total": 126.42799999858835,
+        "group": "other"
+      },
+      {
+        "name": "aten::max_pool2d",
+        "count": 20,
+        "self_cpu_us_total": 53.39900000151101,
+        "cpu_us_total": 19644.821000000928,
+        "group": "other"
+      },
+      {
+        "name": "aten::adaptive_avg_pool2d",
+        "count": 20,
+        "self_cpu_us_total": 52.18499999970663,
+        "cpu_us_total": 699.8010000002396,
+        "group": "other"
+      },
+      {
+        "name": "aten::resize_",
+        "count": 20,
+        "self_cpu_us_total": 46.78000000020256,
+        "cpu_us_total": 46.78000000020256,
+        "group": "other"
+      },
+      {
+        "name": "aten::contiguous",
+        "count": 20,
+        "self_cpu_us_total": 45.05499999945641,
+        "cpu_us_total": 10216.609999999444,
+        "group": "other"
+      }
+    ]
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0,2,4,6,8,10,12-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "performance",
+      "2": "performance",
+      "4": "performance",
+      "6": "performance",
+      "8": "performance",
+      "10": "performance"
+    },
+    "scaling_min_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "framework": "openvino",
+  "version": "2026.4.1-22982-e213a147257-releases/2026/4",
+  "precision": "fp32",
+  "model": "resnet18",
+  "threads": 12,
+  "repeat": 2,
+  "config": {
+    "performance_hint": "LATENCY",
+    "num_streams": 1,
+    "inference_num_threads": 12,
+    "enable_hyper_threading": true
+  },
+  "result": {
+    "batch": 1,
+    "iters": 100,
+    "p50_ms": 8.757,
+    "p95_ms": 9.474,
+    "mean_ms": 8.879,
+    "std_ms": 0.382,
+    "min_ms": 8.548,
+    "throughput_img_s": 114.2,
+    "telemetry": {
+      "cooldown": {
+        "start_temp_c": 40.0,
+        "waited_s": 0.0,
+        "timed_out": false
+      },
+      "temp_start_c": 49.0,
+      "temp_end_c": 57.0,
+      "freq_mean_mhz": 2567.0,
+      "freq_min_mhz": 2205.0,
+      "pkg_throttle_delta": 0,
+      "core_throttle_delta": 0,
+      "throttled": false
+    },
+    "max_abs_diff_vs_pytorch": 3.814697265625e-06
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "performance",
+      "1": "performance",
+      "2": "performance",
+      "3": "performance",
+      "4": "performance",
+      "5": "performance",
+      "6": "performance",
+      "7": "performance",
+      "8": "performance",
+      "9": "performance",
+      "10": "performance",
+      "11": "performance"
+    },
+    "scaling_min_khz": {
+      "0": "2600000",
+      "1": "2600000",
+      "2": "2600000",
+      "3": "2600000",
+      "4": "2600000",
+      "5": "2600000",
+      "6": "2600000",
+      "7": "2600000",
+      "8": "2600000",
+      "9": "2600000",
+      "10": "2600000",
+      "11": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "1": "2600000",
+      "2": "2600000",
+      "3": "2600000",
+      "4": "2600000",
+      "5": "2600000",
+      "6": "2600000",
+      "7": "2600000",
+      "8": "2600000",
+      "9": "2600000",
+      "10": "2600000",
+      "11": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}

@@ -1,0 +1,546 @@
+{
+  "framework": "openvino",
+  "version": "2026.4.1-22982-e213a147257-releases/2026/4",
+  "precision": "fp32",
+  "batch": 1,
+  "threads": 6,
+  "PROFILED_NOT_TIMING": true,
+  "result": {
+    "iters": 50,
+    "sum_layer_real_ms_median": 9.24,
+    "group_ms": {
+      "other": 0.107,
+      "quantize/dequantize/reorder": 0.078,
+      "conv": 8.982,
+      "linear": 0.072
+    },
+    "group_share_pct": {
+      "other": 1.2,
+      "quantize/dequantize/reorder": 0.8,
+      "conv": 97.2,
+      "linear": 0.8
+    },
+    "layers": [
+      {
+        "name": "input",
+        "node_type": "Parameter",
+        "exec_type": "unknown_f32",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "input_abcd_acdb_/conv1/Conv/WithoutBiases",
+        "node_type": "Reorder",
+        "exec_type": "jit_uni_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 78.0,
+        "real_us_mean": 78.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 752.0,
+        "real_us_mean": 737.42,
+        "group": "conv"
+      },
+      {
+        "name": "/relu/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/maxpool/MaxPool",
+        "node_type": "MaxPool",
+        "exec_type": "jit_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 89.0,
+        "real_us_mean": 81.28,
+        "group": "other"
+      },
+      {
+        "name": "/layer1/layer1.0/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 519.0,
+        "real_us_mean": 519.2,
+        "group": "conv"
+      },
+      {
+        "name": "/layer1/layer1.0/relu/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer1/layer1.0/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 519.5,
+        "real_us_mean": 518.26,
+        "group": "conv"
+      },
+      {
+        "name": "/layer1/layer1.0/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer1/layer1.0/relu_1/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer1/layer1.1/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 513.0,
+        "real_us_mean": 513.3,
+        "group": "conv"
+      },
+      {
+        "name": "/layer1/layer1.1/relu/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer1/layer1.1/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 508.0,
+        "real_us_mean": 509.54,
+        "group": "conv"
+      },
+      {
+        "name": "/layer1/layer1.1/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer1/layer1.1/relu_1/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer2/layer2.0/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 270.5,
+        "real_us_mean": 271.86,
+        "group": "conv"
+      },
+      {
+        "name": "/layer2/layer2.0/relu/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer2/layer2.0/downsample/downsample.0/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_1x1_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 39.5,
+        "real_us_mean": 39.02,
+        "group": "conv"
+      },
+      {
+        "name": "/layer2/layer2.0/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 555.0,
+        "real_us_mean": 551.64,
+        "group": "conv"
+      },
+      {
+        "name": "/layer2/layer2.0/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer2/layer2.0/relu_1/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer2/layer2.1/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 552.0,
+        "real_us_mean": 548.54,
+        "group": "conv"
+      },
+      {
+        "name": "/layer2/layer2.1/relu/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer2/layer2.1/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 555.0,
+        "real_us_mean": 552.9,
+        "group": "conv"
+      },
+      {
+        "name": "/layer2/layer2.1/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer2/layer2.1/relu_1/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer3/layer3.0/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 304.0,
+        "real_us_mean": 304.1,
+        "group": "conv"
+      },
+      {
+        "name": "/layer3/layer3.0/relu/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer3/layer3.0/downsample/downsample.0/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_1x1_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 41.0,
+        "real_us_mean": 41.0,
+        "group": "conv"
+      },
+      {
+        "name": "/layer3/layer3.0/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 549.5,
+        "real_us_mean": 548.76,
+        "group": "conv"
+      },
+      {
+        "name": "/layer3/layer3.0/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer3/layer3.0/relu_1/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer3/layer3.1/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 566.5,
+        "real_us_mean": 566.98,
+        "group": "conv"
+      },
+      {
+        "name": "/layer3/layer3.1/relu/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer3/layer3.1/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 571.0,
+        "real_us_mean": 570.52,
+        "group": "conv"
+      },
+      {
+        "name": "/layer3/layer3.1/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer3/layer3.1/relu_1/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer4/layer4.0/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 337.0,
+        "real_us_mean": 336.6,
+        "group": "conv"
+      },
+      {
+        "name": "/layer4/layer4.0/relu/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer4/layer4.0/downsample/downsample.0/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_1x1_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 55.0,
+        "real_us_mean": 55.14,
+        "group": "conv"
+      },
+      {
+        "name": "/layer4/layer4.0/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 591.0,
+        "real_us_mean": 590.6,
+        "group": "conv"
+      },
+      {
+        "name": "/layer4/layer4.0/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer4/layer4.0/relu_1/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer4/layer4.1/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 593.0,
+        "real_us_mean": 591.52,
+        "group": "conv"
+      },
+      {
+        "name": "/layer4/layer4.1/relu/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer4/layer4.1/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 591.0,
+        "real_us_mean": 591.8,
+        "group": "conv"
+      },
+      {
+        "name": "/layer4/layer4.1/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer4/layer4.1/relu_1/Relu",
+        "node_type": "Relu",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/avgpool/GlobalAveragePool",
+        "node_type": "ReduceMean",
+        "exec_type": "jit_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 18.0,
+        "real_us_mean": 17.86,
+        "group": "other"
+      },
+      {
+        "name": "/avgpool/GlobalAveragePool_acdb_abcd_/Flatten",
+        "node_type": "Reorder",
+        "exec_type": "reorder_f32",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/Flatten",
+        "node_type": "Reshape",
+        "exec_type": "unknown_f32",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "output",
+        "node_type": "FullyConnected",
+        "exec_type": "gemm_mlas_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 72.5,
+        "real_us_mean": 76.0,
+        "group": "linear"
+      },
+      {
+        "name": "output/sink_port_0",
+        "node_type": "Result",
+        "exec_type": "unknown_f32",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      }
+    ]
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0,2,4,6,8,10,12-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "performance",
+      "2": "performance",
+      "4": "performance",
+      "6": "performance",
+      "8": "performance",
+      "10": "performance"
+    },
+    "scaling_min_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}

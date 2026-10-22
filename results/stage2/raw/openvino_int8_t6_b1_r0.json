@@ -1,0 +1,124 @@
+{
+  "framework": "openvino",
+  "version": "2026.4.1-22982-e213a147257-releases/2026/4",
+  "precision": "int8",
+  "weights": "IMAGENET1K_V1",
+  "model": "resnet18",
+  "threads": 6,
+  "repeat": 0,
+  "execution_check": {
+    "model_file": "resnet18_pretrained_int8_ov.xml",
+    "INFERENCE_NUM_THREADS": "6",
+    "NUM_STREAMS": "1",
+    "PERFORMANCE_HINT": "LATENCY",
+    "ENABLE_HYPER_THREADING": "False",
+    "INFERENCE_PRECISION_HINT": "<Type: 'float32'>",
+    "EXECUTION_MODE_HINT": "ExecutionMode.PERFORMANCE",
+    "runtime_layers_by_precision": {
+      "f32": 44,
+      "u8": 26,
+      "i8": 21,
+      "i32": 22,
+      "dynamic": 2
+    },
+    "runtime_layers_by_type_precision": {
+      "Input:f32": 1,
+      "Subgraph:f32": 1,
+      "Reorder:u8": 2,
+      "Const:i8": 21,
+      "Const:f32": 21,
+      "Const:i32": 22,
+      "Reshape:f32": 20,
+      "Convolution:u8": 20,
+      "Pooling:u8": 1,
+      "Reduce:u8": 1,
+      "Reshape:u8": 1,
+      "Const:dynamic": 2,
+      "FullyConnected:u8": 1,
+      "Output:f32": 1
+    },
+    "runtime_conv_by_precision": {
+      "Convolution:u8": 20
+    },
+    "quantization": {
+      "nncf": "3.4.0",
+      "openvino": "2026.4.1-22982-e213a147257-releases/2026/4",
+      "calib_images": 300,
+      "call": "nncf.quantize(model, Dataset, subset_size=300) - default preset/params"
+    }
+  },
+  "config": {
+    "performance_hint": "LATENCY",
+    "num_streams": 1,
+    "inference_num_threads": 6,
+    "enable_hyper_threading": false
+  },
+  "result": {
+    "batch": 1,
+    "iters": 100,
+    "p50_ms": 2.59,
+    "p95_ms": 2.826,
+    "mean_ms": 2.62,
+    "std_ms": 0.092,
+    "min_ms": 2.559,
+    "throughput_img_s": 386.07,
+    "telemetry": {
+      "cooldown": {
+        "start_temp_c": 37.0,
+        "waited_s": 0.0,
+        "timed_out": false
+      },
+      "temp_start_c": 43.0,
+      "temp_end_c": 48.0,
+      "freq_mean_mhz": 2567.0,
+      "freq_min_mhz": 2417.0,
+      "pkg_throttle_delta": 0,
+      "core_throttle_delta": 0,
+      "throttled": false
+    },
+    "max_abs_diff_vs_pytorch_fp32": 0.25950539112091064
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0,2,4,6,8,10,12-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "performance",
+      "2": "performance",
+      "4": "performance",
+      "6": "performance",
+      "8": "performance",
+      "10": "performance"
+    },
+    "scaling_min_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}

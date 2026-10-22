@@ -1,0 +1,672 @@
+{
+  "framework": "openvino",
+  "version": "2026.4.1-22982-e213a147257-releases/2026/4",
+  "precision": "int8",
+  "batch": 32,
+  "threads": 6,
+  "PROFILED_NOT_TIMING": true,
+  "result": {
+    "iters": 20,
+    "sum_layer_real_ms_median": 72.171,
+    "group_ms": {
+      "other": 1.798,
+      "quantize/dequantize/reorder": 0.429,
+      "conv": 69.865,
+      "linear": 0.08
+    },
+    "group_share_pct": {
+      "other": 2.5,
+      "quantize/dequantize/reorder": 0.6,
+      "conv": 96.8,
+      "linear": 0.1
+    },
+    "layers": [
+      {
+        "name": "input",
+        "node_type": "Parameter",
+        "exec_type": "unknown_f32",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "input/fq_output_0",
+        "node_type": "Subgraph",
+        "exec_type": "jit_avx2_f32",
+        "status": "Status.EXECUTED",
+        "real_us_median": 803.5,
+        "real_us_mean": 803.25,
+        "group": "other"
+      },
+      {
+        "name": "input/fq_output_0_abcd_acdb_/conv1/Conv/WithoutBiases",
+        "node_type": "Reorder",
+        "exec_type": "jit_uni_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 429.0,
+        "real_us_mean": 427.6,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "jit_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 7322.0,
+        "real_us_mean": 7325.85,
+        "group": "conv"
+      },
+      {
+        "name": "/relu/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/maxpool/MaxPool",
+        "node_type": "MaxPool",
+        "exec_type": "jit_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 695.0,
+        "real_us_mean": 695.8,
+        "group": "other"
+      },
+      {
+        "name": "/layer1/layer1.0/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4382.5,
+        "real_us_mean": 4392.9,
+        "group": "conv"
+      },
+      {
+        "name": "/layer1/layer1.0/relu/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer1/layer1.0/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4406.5,
+        "real_us_mean": 4407.85,
+        "group": "conv"
+      },
+      {
+        "name": "/layer1/layer1.0/conv2/Conv/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer1/layer1.0/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer1/layer1.0/relu_1/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer1/layer1.1/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4262.5,
+        "real_us_mean": 4262.15,
+        "group": "conv"
+      },
+      {
+        "name": "/layer1/layer1.1/relu/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer1/layer1.1/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4421.5,
+        "real_us_mean": 4423.45,
+        "group": "conv"
+      },
+      {
+        "name": "/layer1/layer1.1/conv2/Conv/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer1/layer1.1/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer1/layer1.1/relu_1/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer2/layer2.0/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 2258.0,
+        "real_us_mean": 2287.7,
+        "group": "conv"
+      },
+      {
+        "name": "/layer2/layer2.0/relu/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer2/layer2.0/downsample/downsample.0/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_1x1_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 367.5,
+        "real_us_mean": 373.25,
+        "group": "conv"
+      },
+      {
+        "name": "/layer2/layer2.0/downsample/downsample.0/Conv/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer2/layer2.0/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4238.0,
+        "real_us_mean": 4237.6,
+        "group": "conv"
+      },
+      {
+        "name": "/layer2/layer2.0/conv2/Conv/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer2/layer2.0/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer2/layer2.0/relu_1/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer2/layer2.1/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4149.0,
+        "real_us_mean": 4149.2,
+        "group": "conv"
+      },
+      {
+        "name": "/layer2/layer2.1/relu/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer2/layer2.1/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4241.5,
+        "real_us_mean": 4244.25,
+        "group": "conv"
+      },
+      {
+        "name": "/layer2/layer2.1/conv2/Conv/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer2/layer2.1/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer2/layer2.1/relu_1/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer3/layer3.0/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 2169.0,
+        "real_us_mean": 2170.9,
+        "group": "conv"
+      },
+      {
+        "name": "/layer3/layer3.0/relu/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer3/layer3.0/downsample/downsample.0/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_1x1_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 327.0,
+        "real_us_mean": 327.9,
+        "group": "conv"
+      },
+      {
+        "name": "/layer3/layer3.0/downsample/downsample.0/Conv/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer3/layer3.0/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4108.0,
+        "real_us_mean": 4107.7,
+        "group": "conv"
+      },
+      {
+        "name": "/layer3/layer3.0/conv2/Conv/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer3/layer3.0/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer3/layer3.0/relu_1/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer3/layer3.1/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4154.0,
+        "real_us_mean": 4163.65,
+        "group": "conv"
+      },
+      {
+        "name": "/layer3/layer3.1/relu/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer3/layer3.1/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4153.5,
+        "real_us_mean": 4156.5,
+        "group": "conv"
+      },
+      {
+        "name": "/layer3/layer3.1/conv2/Conv/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer3/layer3.1/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer3/layer3.1/relu_1/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer4/layer4.0/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 2240.5,
+        "real_us_mean": 2240.7,
+        "group": "conv"
+      },
+      {
+        "name": "/layer4/layer4.0/relu/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer4/layer4.0/downsample/downsample.0/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_1x1_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 326.0,
+        "real_us_mean": 326.05,
+        "group": "conv"
+      },
+      {
+        "name": "/layer4/layer4.0/downsample/downsample.0/Conv/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer4/layer4.0/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4127.5,
+        "real_us_mean": 4127.3,
+        "group": "conv"
+      },
+      {
+        "name": "/layer4/layer4.0/conv2/Conv/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer4/layer4.0/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer4/layer4.0/relu_1/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer4/layer4.1/conv1/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4085.0,
+        "real_us_mean": 4084.55,
+        "group": "conv"
+      },
+      {
+        "name": "/layer4/layer4.1/relu/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer4/layer4.1/conv2/Conv/WithoutBiases",
+        "node_type": "Convolution",
+        "exec_type": "brgconv_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 4125.5,
+        "real_us_mean": 4127.2,
+        "group": "conv"
+      },
+      {
+        "name": "/layer4/layer4.1/conv2/Conv/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/layer4/layer4.1/Add",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/layer4/layer4.1/relu_1/Relu/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/avgpool/GlobalAveragePool",
+        "node_type": "ReduceMean",
+        "exec_type": "jit_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 299.0,
+        "real_us_mean": 298.85,
+        "group": "other"
+      },
+      {
+        "name": "/avgpool/GlobalAveragePool/fq_output_0",
+        "node_type": "FakeQuantize",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/avgpool/GlobalAveragePool_acdb_abcd_/Flatten",
+        "node_type": "Reorder",
+        "exec_type": "reorder_I8",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "quantize/dequantize/reorder"
+      },
+      {
+        "name": "/Flatten",
+        "node_type": "Reshape",
+        "exec_type": "unknown_I8",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "/fc/Gemm/WithoutBiases/DequantizationMultiply",
+        "node_type": "FullyConnectedQuantizedLegacy",
+        "exec_type": "brgemm_avx2_I8",
+        "status": "Status.EXECUTED",
+        "real_us_median": 80.0,
+        "real_us_mean": 83.15,
+        "group": "linear"
+      },
+      {
+        "name": "output",
+        "node_type": "Add",
+        "exec_type": "undef",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      },
+      {
+        "name": "output/sink_port_0",
+        "node_type": "Result",
+        "exec_type": "unknown_f32",
+        "status": "Status.NOT_RUN",
+        "real_us_median": 0.0,
+        "real_us_mean": 0.0,
+        "group": "other"
+      }
+    ]
+  },
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "performance",
+    "CUDA_VISIBLE_DEVICES": "",
+    "online_cpus": "0,2,4,6,8,10,12-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "performance",
+      "2": "performance",
+      "4": "performance",
+      "6": "performance",
+      "8": "performance",
+      "10": "performance"
+    },
+    "scaling_min_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "scaling_max_khz": {
+      "0": "2600000",
+      "2": "2600000",
+      "4": "2600000",
+      "6": "2600000",
+      "8": "2600000",
+      "10": "2600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}
