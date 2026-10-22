@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+
+      # only what build_readme.py / report_data.py / compare.py import (numpy, pandas) + pytest; pinned to the versions in requirements/main.txt
+      - name: Install pinned dependencies
+        run: python -m pip install --no-input -r requirements/ci.txt
+
+      - name: Shell syntax (bash -n)
+        run: bash -n run_all.sh && bash -n profile_all.sh && bash -n scripts/bench_state.sh
+
+      - name: Python syntax (py_compile)
+        run: find bench -name '*.py' -print0 | xargs -0 python -m py_compile
+
+      - name: Unit tests
+        run: python -m pytest -q
+
+      - name: README matches results/*.json
+        run: python bench/build_readme.py --check
