@@ -1,0 +1,546 @@
+key	text	source
+hw.cpu	12th Gen Intel(R) Core(TM) i7-12650H	results/stage2/raw/*.json env.cpu
+hw.cap_mhz	2600	results/stage2/raw/*.json env.scaling_max_khz
+hw.epp	performance	results/stage2/raw/*.json env.epp
+hw.pl1_w	45	results/stage2/raw/*.json env.rapl_pl1_uw
+hw.pl2_w	115	results/stage2/raw/*.json env.rapl_pl2_uw
+hw.python	3.12.15	results/stage2/raw/*.json env.python
+ver.pytorch	2.14.1+cpu	results/stage2/raw/pytorch_fp32_t6_b1_r0.json
+ver.onnxruntime	1.31.0	results/stage2/raw/onnx_fp32_t6_b1_r0.json
+ver.openvino	2026.4.1	results/stage2/raw/openvino_fp32_t6_b1_r0.json
+m.threads	6	results/stage2/summary.json
+m.repeats	5	results/stage2/summary.json
+m.iters	100	results/stage2/raw/pytorch_fp32_t6_b1_r0.json result.iters
+m.spread_limit	5	bench/compare.py SPREAD_LIMIT_PCT (stability rule)
+m.bert_procs	180	results/bert/raw/*.json (count)
+m.s2_procs	90	results/stage2/raw/*.json (count)
+m.p1_procs	45	results/phase1/raw/*.json (count)
+m.p2_procs	45	results/phase2/raw/*.json (count)
+acc.rn_n	1000	results/accuracy/pytorch_int8.json n
+acc.bert_n	872	results/accuracy_bert/A_pytorch_fp32_L128.json n
+acc.bert_trunc32	208	results/accuracy_bert/A_pytorch_fp32_L32.json n_truncated
+acc.bert_trunc32_pct	24	results/accuracy_bert/A_pytorch_fp32_L32.json n_truncated / n
+acc.bert_ntests	9	bench/bert_accuracy_compare.py (3 frameworks x {A seq128, A seq32, B seq128})
+acc.boot	5000	bench/accuracy_compare.py / bert_accuracy_compare.py (bootstrap resamples, seed 0)
+acc.rn_fp32	70.5	results/accuracy/*_fp32.json top1
+acc.bertA_fp32_128	91.06	results/accuracy_bert/A_*_fp32_L128.json acc
+acc.bertB_fp32_128	84.75	results/accuracy_bert/B_*_fp32_L128.json acc
+acc.bertA_fp32_32	89.91	results/accuracy_bert/A_*_fp32_L32.json acc
+acc.bertA_card	91.06	model card (distilbert-base-uncased-finetuned-sst-2-english); compare results/accuracy_bert/A_*_fp32_L128.json
+acc.bertB_card	84.74	model card (M-FAC/bert-mini-finetuned-sst2); compare results/accuracy_bert/B_*_fp32_L128.json
+head.rn.min	2.34	results/stage2/summary.json
+head.rn.max	3.53	results/stage2/summary.json
+head.rn.n	7	results/stage2/summary.json
+head.bert.min	1.10	results/bert/summary.json
+head.bert.max	3.12	results/bert/summary.json
+head.bert.n	14	results/bert/summary.json
+head.rn_unstable	2	results/stage2/summary.json
+head.rn_rows	18	results/stage2/summary.json
+head.bert_unstable	5	results/bert/summary.json
+head.bert_rows	36	results/bert/summary.json
+head.p1_unstable	1	results/phase1/summary.json
+head.p1_rows	9	results/phase1/summary.json
+head.p2_unstable	3	results/phase2/summary.json
+head.p2_rows	9	results/phase2/summary.json
+head.rn_diff_min	−0.9	results/accuracy/*_int8*.json
+head.rn_diff_max	−0.6	results/accuracy/*_int8*.json
+head.rn_ci_all_include_zero	all	results/accuracy/*_int8*.json (paired bootstrap)
+head.bertA128pt.diff	−1.61	results/accuracy_bert/A_pytorch_int8_L128.json
+head.bertA128pt.p	0.038	results/accuracy_bert/A_pytorch_int8_L128.json
+head.bertA128pt.pb	0.35	results/accuracy_bert/A_pytorch_int8_L128.json
+head.bert_other_min	−0.57	results/accuracy_bert/*_int8_*.json
+head.bert_other_max	0.57	results/accuracy_bert/*_int8_*.json
+head.ratio_min_note		
+hd.s2.pytorch.b1.sp	2.34	results/stage2/summary.json
+hd.s2.pytorch.b32.sp	2.73	results/stage2/summary.json
+hd.s2.onnxruntime.b1.sp	2.74	results/stage2/summary.json
+hd.s2.onnxruntime.b32.sp	2.99	results/stage2/summary.json
+hd.s2.openvino.b1.sp	3.48	results/stage2/summary.json
+hd.s2.openvino.b32.sp	3.53	results/stage2/summary.json
+arch.noisy_pairs	18	results/archive_noisy_first_attempt/*.json (run vs run2 per framework/threads/batch)
+arch.noisy_over	12	results/archive_noisy_first_attempt/*.json ((max-min)/min > 5%)
+arch.p3000_rows	4	results/archive_pilot_3000mhz/summary.json
+arch.p3000_throttled	2	results/archive_pilot_3000mhz/summary.json (throttled flag)
+arch.p3000_mhz	3000	results/archive_pilot_3000mhz/summary.json (freq_mean_mhz ~2995; cap 3000000 kHz)
+arch.bugacc	49.08	results/archive_bert_tokenizer_bug/*.json (all six identical)
+bert.fp32_maxdiff_timing	1.7e-06	results/bert/summary.json max_abs_diff_fp32 (FP32 rows: ORT and OpenVINO vs PyTorch, first `batch` validation sentences, timing run)
+exp.n	64	results/exec_check_bert/export_check.json n_sentences
+bert.maxdiff_A	9.5e-06	results/exec_check_bert/export_check.json max_abs_diff_A (ORT vs PyTorch, 64 sentences, batch 1/8, seq 32/128)
+bert.maxdiff_B	3.4e-06	results/exec_check_bert/export_check.json max_abs_diff_B (same check)
+bert.maxdiff_all	9.5e-06	max over the timing-run rows and results/exec_check_bert/export_check.json
+rn.fp32_maxdiff	9.1e-06	results/stage2/summary.json max_abs_diff (FP32 rows)
+bo.lo	+0.11	results/accuracy_bert/B_openvino_int8_L128.json
+bo.hi	+0.92	results/accuracy_bert/B_openvino_int8_L128.json
+bo.p	0.125	results/accuracy_bert/B_openvino_int8_L128.json
+bo.of	0	results/accuracy_bert/B_openvino_int8_L128.json
+bo.oi	4	results/accuracy_bert/B_openvino_int8_L128.json
+bo.d	+0.46	results/accuracy_bert/B_openvino_int8_L128.json
+tk.ov_groups	9	results/stage2/summary.json + results/bert/summary.json (INT8 configurations compared)
+tk.smt_n	5	results/phase1/summary.json + results/phase2/summary.json (pairs stable in both)
+tk.smt_min	0.6	results/phase1/summary.json + results/phase2/summary.json (p50 reduction, 12 vs 6 threads)
+tk.smt_max	7.5	results/phase1/summary.json + results/phase2/summary.json (p50 reduction, 12 vs 6 threads)
+rn.minmax_hi	+0.0	results/accuracy/onnx_int8_minmax.json
+gl.rn.pytorch.f	13.6	results/stage2/summary.json
+gl.rn.pytorch.i	5.8	results/stage2/summary.json
+gl.rn.pytorch.sp	2.34	results/stage2/summary.json
+gl.rn.pytorch.ims	5.8	results/stage2/summary.json
+gl.rn.pytorch.iips	172	results/stage2/summary.json
+gl.rn.pytorch.ad	−0.8	results/accuracy/pytorch_int8.json
+gl.rn.pytorch.alo	−1.8	results/accuracy/pytorch_int8.json
+gl.rn.pytorch.ahi	+0.2	results/accuracy/pytorch_int8.json
+gl.rn.pytorch.bsp	1.61	results/bert/summary.json
+gl.rn.pytorch.bd	−1.61	results/accuracy_bert/A_pytorch_int8_L128.json
+gl.rn.pytorch.blo	−3.10	results/accuracy_bert/A_pytorch_int8_L128.json
+gl.rn.pytorch.bhi	−0.23	results/accuracy_bert/A_pytorch_int8_L128.json
+gl.rn.onnxruntime.f	8.9	results/stage2/summary.json
+gl.rn.onnxruntime.i	3.2	results/stage2/summary.json
+gl.rn.onnxruntime.sp	2.74	results/stage2/summary.json
+gl.rn.onnxruntime.ims	3.2	results/stage2/summary.json
+gl.rn.onnxruntime.iips	309	results/stage2/summary.json
+gl.rn.onnxruntime.ad	−0.9	results/accuracy/onnx_int8_minmax.json
+gl.rn.onnxruntime.alo	−1.9	results/accuracy/onnx_int8_minmax.json
+gl.rn.onnxruntime.ahi	+0.0	results/accuracy/onnx_int8_minmax.json
+gl.rn.onnxruntime.p1ratio	1.52	results/phase1/summary.json
+gl.rn.onnxruntime.bsp	2.21	results/bert/summary.json
+gl.rn.onnxruntime.bd	−0.57	results/accuracy_bert/A_onnx_int8_L128.json
+gl.rn.onnxruntime.blo	−1.49	results/accuracy_bert/A_onnx_int8_L128.json
+gl.rn.onnxruntime.bhi	+0.34	results/accuracy_bert/A_onnx_int8_L128.json
+gl.rn.openvino.f	9.0	results/stage2/summary.json
+gl.rn.openvino.i	2.6	results/stage2/summary.json
+gl.rn.openvino.sp	3.48	results/stage2/summary.json
+gl.rn.openvino.ims	2.6	results/stage2/summary.json
+gl.rn.openvino.iips	386	results/stage2/summary.json
+gl.rn.openvino.ad	−0.8	results/accuracy/openvino_int8.json
+gl.rn.openvino.alo	−1.9	results/accuracy/openvino_int8.json
+gl.rn.openvino.ahi	+0.3	results/accuracy/openvino_int8.json
+gl.rn.openvino.p1ratio	1.51	results/phase1/summary.json
+gl.rn.openvino.bi	10.3	results/bert/summary.json
+gl.rn.openvino.bd	+0.23	results/accuracy_bert/A_openvino_int8_L128.json
+gl.rn.openvino.blo	−0.23	results/accuracy_bert/A_openvino_int8_L128.json
+gl.rn.openvino.bhi	+0.69	results/accuracy_bert/A_openvino_int8_L128.json
+p1.pytorch.b1.b	1	results/phase1/summary.json
+p1.pytorch.b1.p50	13.5	results/phase1/summary.json
+p1.pytorch.b1.p95	13.9	results/phase1/summary.json
+p1.pytorch.b1.ips	74.0	results/phase1/summary.json
+p1.pytorch.b1.spread	4.7	results/phase1/summary.json
+p1.onnxruntime.b1.ratio	1.52	results/phase1/summary.json
+p1.onnxruntime.b1.b	1	results/phase1/summary.json
+p1.onnxruntime.b1.p50	8.9	results/phase1/summary.json
+p1.onnxruntime.b1.p95	8.9	results/phase1/summary.json
+p1.onnxruntime.b1.ips	112.7	results/phase1/summary.json
+p1.onnxruntime.b1.spread	0.4	results/phase1/summary.json
+p1.openvino.b1.ratio	1.51	results/phase1/summary.json
+p1.openvino.b1.b	1	results/phase1/summary.json
+p1.openvino.b1.p50	9.0	results/phase1/summary.json
+p1.openvino.b1.p95	9.6	results/phase1/summary.json
+p1.openvino.b1.ips	111.6	results/phase1/summary.json
+p1.openvino.b1.spread	3.2	results/phase1/summary.json
+p1.pytorch.b8.b	8	results/phase1/summary.json
+p1.pytorch.b8.p50	94.8	results/phase1/summary.json
+p1.pytorch.b8.p95	95.3	results/phase1/summary.json
+p1.pytorch.b8.ips	84.4	results/phase1/summary.json
+p1.pytorch.b8.spread	2.5	results/phase1/summary.json
+p1.onnxruntime.b8.ratio	1.53	results/phase1/summary.json
+p1.onnxruntime.b8.b	8	results/phase1/summary.json
+p1.onnxruntime.b8.p50	61.8	results/phase1/summary.json
+p1.onnxruntime.b8.p95	62.1	results/phase1/summary.json
+p1.onnxruntime.b8.ips	129.5	results/phase1/summary.json
+p1.onnxruntime.b8.spread	1.2	results/phase1/summary.json
+p1.openvino.b8.b	8	results/phase1/summary.json
+p1.openvino.b8.p50	71.2	results/phase1/summary.json
+p1.openvino.b8.p95	72.2	results/phase1/summary.json
+p1.openvino.b8.ips	112.4	results/phase1/summary.json
+p1.openvino.b8.spread	6.9	results/phase1/summary.json
+p1.pytorch.b32.b	32	results/phase1/summary.json
+p1.pytorch.b32.p50	429.0	results/phase1/summary.json
+p1.pytorch.b32.p95	431.5	results/phase1/summary.json
+p1.pytorch.b32.ips	74.6	results/phase1/summary.json
+p1.pytorch.b32.spread	1.0	results/phase1/summary.json
+p1.onnxruntime.b32.ratio	1.75	results/phase1/summary.json
+p1.onnxruntime.b32.b	32	results/phase1/summary.json
+p1.onnxruntime.b32.p50	244.7	results/phase1/summary.json
+p1.onnxruntime.b32.p95	245.5	results/phase1/summary.json
+p1.onnxruntime.b32.ips	130.8	results/phase1/summary.json
+p1.onnxruntime.b32.spread	2.7	results/phase1/summary.json
+p1.openvino.b32.ratio	1.66	results/phase1/summary.json
+p1.openvino.b32.b	32	results/phase1/summary.json
+p1.openvino.b32.p50	258.3	results/phase1/summary.json
+p1.openvino.b32.p95	280.3	results/phase1/summary.json
+p1.openvino.b32.ips	123.9	results/phase1/summary.json
+p1.openvino.b32.spread	1.0	results/phase1/summary.json
+s2.pytorch.b1.sp	2.34	results/stage2/summary.json
+s2.pytorch.b1.b	1	results/stage2/summary.json
+s2.pytorch.b1.f	13.6	results/stage2/summary.json
+s2.pytorch.b1.i	5.8	results/stage2/summary.json
+s2.pytorch.b1.fs	2.7	results/stage2/summary.json
+s2.pytorch.b1.is	0.4	results/stage2/summary.json
+s2.onnxruntime.b1.sp	2.74	results/stage2/summary.json
+s2.onnxruntime.b1.vs	1.80	results/stage2/summary.json
+s2.onnxruntime.b1.b	1	results/stage2/summary.json
+s2.onnxruntime.b1.f	8.9	results/stage2/summary.json
+s2.onnxruntime.b1.i	3.2	results/stage2/summary.json
+s2.onnxruntime.b1.fs	1.4	results/stage2/summary.json
+s2.onnxruntime.b1.is	1.0	results/stage2/summary.json
+s2.openvino.b1.sp	3.48	results/stage2/summary.json
+s2.openvino.b1.vs	2.24	results/stage2/summary.json
+s2.openvino.b1.b	1	results/stage2/summary.json
+s2.openvino.b1.f	9.0	results/stage2/summary.json
+s2.openvino.b1.i	2.6	results/stage2/summary.json
+s2.openvino.b1.fs	2.3	results/stage2/summary.json
+s2.openvino.b1.is	0.2	results/stage2/summary.json
+s2.pytorch.b8.b	8	results/stage2/summary.json
+s2.pytorch.b8.f	91.1	results/stage2/summary.json
+s2.pytorch.b8.i	39.3	results/stage2/summary.json
+s2.pytorch.b8.fs	5.9	results/stage2/summary.json
+s2.pytorch.b8.is	0.8	results/stage2/summary.json
+s2.onnxruntime.b8.sp	2.93	results/stage2/summary.json
+s2.onnxruntime.b8.vs	1.86	results/stage2/summary.json
+s2.onnxruntime.b8.b	8	results/stage2/summary.json
+s2.onnxruntime.b8.f	61.8	results/stage2/summary.json
+s2.onnxruntime.b8.i	21.1	results/stage2/summary.json
+s2.onnxruntime.b8.fs	1.9	results/stage2/summary.json
+s2.onnxruntime.b8.is	0.9	results/stage2/summary.json
+s2.openvino.b8.vs	2.07	results/stage2/summary.json
+s2.openvino.b8.b	8	results/stage2/summary.json
+s2.openvino.b8.f	71.3	results/stage2/summary.json
+s2.openvino.b8.i	18.9	results/stage2/summary.json
+s2.openvino.b8.fs	9.5	results/stage2/summary.json
+s2.openvino.b8.is	0.3	results/stage2/summary.json
+s2.pytorch.b32.sp	2.73	results/stage2/summary.json
+s2.pytorch.b32.b	32	results/stage2/summary.json
+s2.pytorch.b32.f	420.3	results/stage2/summary.json
+s2.pytorch.b32.i	153.9	results/stage2/summary.json
+s2.pytorch.b32.fs	2.0	results/stage2/summary.json
+s2.pytorch.b32.is	0.5	results/stage2/summary.json
+s2.onnxruntime.b32.sp	2.99	results/stage2/summary.json
+s2.onnxruntime.b32.vs	1.88	results/stage2/summary.json
+s2.onnxruntime.b32.b	32	results/stage2/summary.json
+s2.onnxruntime.b32.f	244.6	results/stage2/summary.json
+s2.onnxruntime.b32.i	81.7	results/stage2/summary.json
+s2.onnxruntime.b32.fs	2.8	results/stage2/summary.json
+s2.onnxruntime.b32.is	0.2	results/stage2/summary.json
+s2.openvino.b32.sp	3.53	results/stage2/summary.json
+s2.openvino.b32.vs	2.10	results/stage2/summary.json
+s2.openvino.b32.b	32	results/stage2/summary.json
+s2.openvino.b32.f	259.3	results/stage2/summary.json
+s2.openvino.b32.i	73.4	results/stage2/summary.json
+s2.openvino.b32.fs	3.0	results/stage2/summary.json
+s2.openvino.b32.is	0.2	results/stage2/summary.json
+bert.A.32.pytorch.b1.sp	1.61	results/bert/summary.json
+bert.A.32.pytorch.b1.seq	32	results/bert/summary.json
+bert.A.32.pytorch.b1.b	1	results/bert/summary.json
+bert.A.32.pytorch.b1.f	11.6	results/bert/summary.json
+bert.A.32.pytorch.b1.i	7.2	results/bert/summary.json
+bert.A.32.onnxruntime.b1.sp	2.14	results/bert/summary.json
+bert.A.32.onnxruntime.b1.vs	1.54	results/bert/summary.json
+bert.A.32.onnxruntime.b1.seq	32	results/bert/summary.json
+bert.A.32.onnxruntime.b1.b	1	results/bert/summary.json
+bert.A.32.onnxruntime.b1.f	10.0	results/bert/summary.json
+bert.A.32.onnxruntime.b1.i	4.7	results/bert/summary.json
+bert.A.32.openvino.b1.sp	2.93	results/bert/summary.json
+bert.A.32.openvino.b1.vs	2.19	results/bert/summary.json
+bert.A.32.openvino.b1.seq	32	results/bert/summary.json
+bert.A.32.openvino.b1.b	1	results/bert/summary.json
+bert.A.32.openvino.b1.f	9.6	results/bert/summary.json
+bert.A.32.openvino.b1.i	3.3	results/bert/summary.json
+bert.A.32.pytorch.b8.seq	32	results/bert/summary.json
+bert.A.32.pytorch.b8.b	8	results/bert/summary.json
+bert.A.32.pytorch.b8.f	61.7	results/bert/summary.json
+bert.A.32.pytorch.b8.i	36.6	results/bert/summary.json
+bert.A.32.onnxruntime.b8.sp	2.35	results/bert/summary.json
+bert.A.32.onnxruntime.b8.vs	1.51	results/bert/summary.json
+bert.A.32.onnxruntime.b8.seq	32	results/bert/summary.json
+bert.A.32.onnxruntime.b8.b	8	results/bert/summary.json
+bert.A.32.onnxruntime.b8.f	56.9	results/bert/summary.json
+bert.A.32.onnxruntime.b8.i	24.3	results/bert/summary.json
+bert.A.32.openvino.b8.sp	3.00	results/bert/summary.json
+bert.A.32.openvino.b8.vs	2.01	results/bert/summary.json
+bert.A.32.openvino.b8.seq	32	results/bert/summary.json
+bert.A.32.openvino.b8.b	8	results/bert/summary.json
+bert.A.32.openvino.b8.f	54.6	results/bert/summary.json
+bert.A.32.openvino.b8.i	18.2	results/bert/summary.json
+bert.A.128.pytorch.b1.sp	1.61	results/bert/summary.json
+bert.A.128.pytorch.b1.seq	128	results/bert/summary.json
+bert.A.128.pytorch.b1.b	1	results/bert/summary.json
+bert.A.128.pytorch.b1.f	34.1	results/bert/summary.json
+bert.A.128.pytorch.b1.i	21.2	results/bert/summary.json
+bert.A.128.onnxruntime.b1.sp	2.21	results/bert/summary.json
+bert.A.128.onnxruntime.b1.vs	1.52	results/bert/summary.json
+bert.A.128.onnxruntime.b1.seq	128	results/bert/summary.json
+bert.A.128.onnxruntime.b1.b	1	results/bert/summary.json
+bert.A.128.onnxruntime.b1.f	30.7	results/bert/summary.json
+bert.A.128.onnxruntime.b1.i	13.9	results/bert/summary.json
+bert.A.128.openvino.b1.vs	2.05	results/bert/summary.json
+bert.A.128.openvino.b1.seq	128	results/bert/summary.json
+bert.A.128.openvino.b1.b	1	results/bert/summary.json
+bert.A.128.openvino.b1.f	29.6	results/bert/summary.json
+bert.A.128.openvino.b1.i	10.3	results/bert/summary.json
+bert.A.128.pytorch.b8.sp	1.48	results/bert/summary.json
+bert.A.128.pytorch.b8.seq	128	results/bert/summary.json
+bert.A.128.pytorch.b8.b	8	results/bert/summary.json
+bert.A.128.pytorch.b8.f	237.6	results/bert/summary.json
+bert.A.128.pytorch.b8.i	160.5	results/bert/summary.json
+bert.A.128.onnxruntime.b8.vs	1.64	results/bert/summary.json
+bert.A.128.onnxruntime.b8.seq	128	results/bert/summary.json
+bert.A.128.onnxruntime.b8.b	8	results/bert/summary.json
+bert.A.128.onnxruntime.b8.f	237.7	results/bert/summary.json
+bert.A.128.onnxruntime.b8.i	98.1	results/bert/summary.json
+bert.A.128.openvino.b8.sp	3.12	results/bert/summary.json
+bert.A.128.openvino.b8.vs	2.27	results/bert/summary.json
+bert.A.128.openvino.b8.seq	128	results/bert/summary.json
+bert.A.128.openvino.b8.b	8	results/bert/summary.json
+bert.A.128.openvino.b8.f	221.0	results/bert/summary.json
+bert.A.128.openvino.b8.i	70.8	results/bert/summary.json
+bert.B.128.pytorch.b1.sp	1.10	results/bert/summary.json
+bert.B.128.pytorch.b1.seq	128	results/bert/summary.json
+bert.B.128.pytorch.b1.b	1	results/bert/summary.json
+bert.B.128.pytorch.b1.f	4.8	results/bert/summary.json
+bert.B.128.pytorch.b1.i	4.3	results/bert/summary.json
+bert.B.128.onnxruntime.b1.sp	1.40	results/bert/summary.json
+bert.B.128.onnxruntime.b1.vs	1.59	results/bert/summary.json
+bert.B.128.onnxruntime.b1.seq	128	results/bert/summary.json
+bert.B.128.onnxruntime.b1.b	1	results/bert/summary.json
+bert.B.128.onnxruntime.b1.f	3.8	results/bert/summary.json
+bert.B.128.onnxruntime.b1.i	2.7	results/bert/summary.json
+bert.B.128.openvino.b1.sp	1.94	results/bert/summary.json
+bert.B.128.openvino.b1.vs	2.78	results/bert/summary.json
+bert.B.128.openvino.b1.seq	128	results/bert/summary.json
+bert.B.128.openvino.b1.b	1	results/bert/summary.json
+bert.B.128.openvino.b1.f	3.0	results/bert/summary.json
+bert.B.128.openvino.b1.i	1.6	results/bert/summary.json
+bert.B.128.pytorch.b8.seq	128	results/bert/summary.json
+bert.B.128.pytorch.b8.b	8	results/bert/summary.json
+bert.B.128.pytorch.b8.f	23.2	results/bert/summary.json
+bert.B.128.pytorch.b8.i	22.0	results/bert/summary.json
+bert.B.128.onnxruntime.b8.sp	1.70	results/bert/summary.json
+bert.B.128.onnxruntime.b8.seq	128	results/bert/summary.json
+bert.B.128.onnxruntime.b8.b	8	results/bert/summary.json
+bert.B.128.onnxruntime.b8.f	23.8	results/bert/summary.json
+bert.B.128.onnxruntime.b8.i	14.0	results/bert/summary.json
+bert.B.128.openvino.b8.sp	2.26	results/bert/summary.json
+bert.B.128.openvino.b8.seq	128	results/bert/summary.json
+bert.B.128.openvino.b8.b	8	results/bert/summary.json
+bert.B.128.openvino.b8.f	18.8	results/bert/summary.json
+bert.B.128.openvino.b8.i	8.3	results/bert/summary.json
+racc.onnxruntime_minmax.f	70.5	results/accuracy/onnx_int8_minmax.json
+racc.onnxruntime_minmax.i	69.6	results/accuracy/onnx_int8_minmax.json
+racc.onnxruntime_minmax.d	−0.9	results/accuracy/onnx_int8_minmax.json
+racc.onnxruntime_minmax.lo	−1.9	results/accuracy/onnx_int8_minmax.json
+racc.onnxruntime_minmax.hi	+0.0	results/accuracy/onnx_int8_minmax.json
+racc.onnxruntime_minmax.of	16	results/accuracy/onnx_int8_minmax.json
+racc.onnxruntime_minmax.oi	7	results/accuracy/onnx_int8_minmax.json
+racc.onnxruntime_minmax.p	0.093	results/accuracy/onnx_int8_minmax.json
+racc.onnxruntime_percentile.f	70.5	results/accuracy/onnx_int8_percentile.json
+racc.onnxruntime_percentile.i	69.9	results/accuracy/onnx_int8_percentile.json
+racc.onnxruntime_percentile.d	−0.6	results/accuracy/onnx_int8_percentile.json
+racc.onnxruntime_percentile.lo	−1.3	results/accuracy/onnx_int8_percentile.json
+racc.onnxruntime_percentile.hi	+0.1	results/accuracy/onnx_int8_percentile.json
+racc.onnxruntime_percentile.of	10	results/accuracy/onnx_int8_percentile.json
+racc.onnxruntime_percentile.oi	4	results/accuracy/onnx_int8_percentile.json
+racc.onnxruntime_percentile.p	0.180	results/accuracy/onnx_int8_percentile.json
+racc.openvino-.f	70.5	results/accuracy/openvino_int8.json
+racc.openvino-.i	69.7	results/accuracy/openvino_int8.json
+racc.openvino-.d	−0.8	results/accuracy/openvino_int8.json
+racc.openvino-.lo	−1.9	results/accuracy/openvino_int8.json
+racc.openvino-.hi	+0.3	results/accuracy/openvino_int8.json
+racc.openvino-.of	19	results/accuracy/openvino_int8.json
+racc.openvino-.oi	11	results/accuracy/openvino_int8.json
+racc.openvino-.p	0.200	results/accuracy/openvino_int8.json
+racc.pytorch-.f	70.5	results/accuracy/pytorch_int8.json
+racc.pytorch-.i	69.7	results/accuracy/pytorch_int8.json
+racc.pytorch-.d	−0.8	results/accuracy/pytorch_int8.json
+racc.pytorch-.lo	−1.8	results/accuracy/pytorch_int8.json
+racc.pytorch-.hi	+0.2	results/accuracy/pytorch_int8.json
+racc.pytorch-.of	17	results/accuracy/pytorch_int8.json
+racc.pytorch-.oi	9	results/accuracy/pytorch_int8.json
+racc.pytorch-.p	0.169	results/accuracy/pytorch_int8.json
+bacc.A.128.pytorch.seq	128	results/accuracy_bert/A_pytorch_int8_L128.json
+bacc.A.128.pytorch.f	91.06	results/accuracy_bert/A_pytorch_int8_L128.json
+bacc.A.128.pytorch.i	89.45	results/accuracy_bert/A_pytorch_int8_L128.json
+bacc.A.128.pytorch.d	−1.61	results/accuracy_bert/A_pytorch_int8_L128.json
+bacc.A.128.pytorch.lo	−3.10	results/accuracy_bert/A_pytorch_int8_L128.json
+bacc.A.128.pytorch.hi	−0.23	results/accuracy_bert/A_pytorch_int8_L128.json
+bacc.A.128.pytorch.of	27	results/accuracy_bert/A_pytorch_int8_L128.json
+bacc.A.128.pytorch.oi	13	results/accuracy_bert/A_pytorch_int8_L128.json
+bacc.A.128.pytorch.p	0.038	results/accuracy_bert/A_pytorch_int8_L128.json
+bacc.A.128.pytorch.pb	0.35	results/accuracy_bert/A_pytorch_int8_L128.json
+bacc.A.128.onnxruntime.seq	128	results/accuracy_bert/A_onnx_int8_L128.json
+bacc.A.128.onnxruntime.f	91.06	results/accuracy_bert/A_onnx_int8_L128.json
+bacc.A.128.onnxruntime.i	90.48	results/accuracy_bert/A_onnx_int8_L128.json
+bacc.A.128.onnxruntime.d	−0.57	results/accuracy_bert/A_onnx_int8_L128.json
+bacc.A.128.onnxruntime.lo	−1.49	results/accuracy_bert/A_onnx_int8_L128.json
+bacc.A.128.onnxruntime.hi	+0.34	results/accuracy_bert/A_onnx_int8_L128.json
+bacc.A.128.onnxruntime.of	11	results/accuracy_bert/A_onnx_int8_L128.json
+bacc.A.128.onnxruntime.oi	6	results/accuracy_bert/A_onnx_int8_L128.json
+bacc.A.128.onnxruntime.p	0.332	results/accuracy_bert/A_onnx_int8_L128.json
+bacc.A.128.onnxruntime.pb	1.00	results/accuracy_bert/A_onnx_int8_L128.json
+bacc.A.128.openvino.seq	128	results/accuracy_bert/A_openvino_int8_L128.json
+bacc.A.128.openvino.f	91.06	results/accuracy_bert/A_openvino_int8_L128.json
+bacc.A.128.openvino.i	91.28	results/accuracy_bert/A_openvino_int8_L128.json
+bacc.A.128.openvino.d	+0.23	results/accuracy_bert/A_openvino_int8_L128.json
+bacc.A.128.openvino.lo	−0.23	results/accuracy_bert/A_openvino_int8_L128.json
+bacc.A.128.openvino.hi	+0.69	results/accuracy_bert/A_openvino_int8_L128.json
+bacc.A.128.openvino.of	1	results/accuracy_bert/A_openvino_int8_L128.json
+bacc.A.128.openvino.oi	3	results/accuracy_bert/A_openvino_int8_L128.json
+bacc.A.128.openvino.p	0.625	results/accuracy_bert/A_openvino_int8_L128.json
+bacc.A.128.openvino.pb	1.00	results/accuracy_bert/A_openvino_int8_L128.json
+bacc.A.32.pytorch.seq	32	results/accuracy_bert/A_pytorch_int8_L32.json
+bacc.A.32.pytorch.f	89.91	results/accuracy_bert/A_pytorch_int8_L32.json
+bacc.A.32.pytorch.i	90.48	results/accuracy_bert/A_pytorch_int8_L32.json
+bacc.A.32.pytorch.d	+0.57	results/accuracy_bert/A_pytorch_int8_L32.json
+bacc.A.32.pytorch.lo	−0.69	results/accuracy_bert/A_pytorch_int8_L32.json
+bacc.A.32.pytorch.hi	+1.83	results/accuracy_bert/A_pytorch_int8_L32.json
+bacc.A.32.pytorch.of	12	results/accuracy_bert/A_pytorch_int8_L32.json
+bacc.A.32.pytorch.oi	17	results/accuracy_bert/A_pytorch_int8_L32.json
+bacc.A.32.pytorch.p	0.458	results/accuracy_bert/A_pytorch_int8_L32.json
+bacc.A.32.pytorch.pb	1.00	results/accuracy_bert/A_pytorch_int8_L32.json
+bacc.A.32.onnxruntime.seq	32	results/accuracy_bert/A_onnx_int8_L32.json
+bacc.A.32.onnxruntime.f	89.91	results/accuracy_bert/A_onnx_int8_L32.json
+bacc.A.32.onnxruntime.i	89.33	results/accuracy_bert/A_onnx_int8_L32.json
+bacc.A.32.onnxruntime.d	−0.57	results/accuracy_bert/A_onnx_int8_L32.json
+bacc.A.32.onnxruntime.lo	−1.38	results/accuracy_bert/A_onnx_int8_L32.json
+bacc.A.32.onnxruntime.hi	+0.11	results/accuracy_bert/A_onnx_int8_L32.json
+bacc.A.32.onnxruntime.of	8	results/accuracy_bert/A_onnx_int8_L32.json
+bacc.A.32.onnxruntime.oi	3	results/accuracy_bert/A_onnx_int8_L32.json
+bacc.A.32.onnxruntime.p	0.227	results/accuracy_bert/A_onnx_int8_L32.json
+bacc.A.32.onnxruntime.pb	1.00	results/accuracy_bert/A_onnx_int8_L32.json
+bacc.A.32.openvino.seq	32	results/accuracy_bert/A_openvino_int8_L32.json
+bacc.A.32.openvino.f	89.91	results/accuracy_bert/A_openvino_int8_L32.json
+bacc.A.32.openvino.i	90.02	results/accuracy_bert/A_openvino_int8_L32.json
+bacc.A.32.openvino.d	+0.11	results/accuracy_bert/A_openvino_int8_L32.json
+bacc.A.32.openvino.lo	−0.23	results/accuracy_bert/A_openvino_int8_L32.json
+bacc.A.32.openvino.hi	+0.57	results/accuracy_bert/A_openvino_int8_L32.json
+bacc.A.32.openvino.of	1	results/accuracy_bert/A_openvino_int8_L32.json
+bacc.A.32.openvino.oi	2	results/accuracy_bert/A_openvino_int8_L32.json
+bacc.A.32.openvino.p	1.000	results/accuracy_bert/A_openvino_int8_L32.json
+bacc.A.32.openvino.pb	1.00	results/accuracy_bert/A_openvino_int8_L32.json
+bacc.B.128.pytorch.seq	128	results/accuracy_bert/B_pytorch_int8_L128.json
+bacc.B.128.pytorch.f	84.75	results/accuracy_bert/B_pytorch_int8_L128.json
+bacc.B.128.pytorch.i	85.21	results/accuracy_bert/B_pytorch_int8_L128.json
+bacc.B.128.pytorch.d	+0.46	results/accuracy_bert/B_pytorch_int8_L128.json
+bacc.B.128.pytorch.lo	−0.46	results/accuracy_bert/B_pytorch_int8_L128.json
+bacc.B.128.pytorch.hi	+1.49	results/accuracy_bert/B_pytorch_int8_L128.json
+bacc.B.128.pytorch.of	7	results/accuracy_bert/B_pytorch_int8_L128.json
+bacc.B.128.pytorch.oi	11	results/accuracy_bert/B_pytorch_int8_L128.json
+bacc.B.128.pytorch.p	0.481	results/accuracy_bert/B_pytorch_int8_L128.json
+bacc.B.128.pytorch.pb	1.00	results/accuracy_bert/B_pytorch_int8_L128.json
+bacc.B.128.onnxruntime.seq	128	results/accuracy_bert/B_onnx_int8_L128.json
+bacc.B.128.onnxruntime.f	84.75	results/accuracy_bert/B_onnx_int8_L128.json
+bacc.B.128.onnxruntime.i	84.63	results/accuracy_bert/B_onnx_int8_L128.json
+bacc.B.128.onnxruntime.d	−0.11	results/accuracy_bert/B_onnx_int8_L128.json
+bacc.B.128.onnxruntime.lo	−0.57	results/accuracy_bert/B_onnx_int8_L128.json
+bacc.B.128.onnxruntime.hi	+0.34	results/accuracy_bert/B_onnx_int8_L128.json
+bacc.B.128.onnxruntime.of	3	results/accuracy_bert/B_onnx_int8_L128.json
+bacc.B.128.onnxruntime.oi	2	results/accuracy_bert/B_onnx_int8_L128.json
+bacc.B.128.onnxruntime.p	1.000	results/accuracy_bert/B_onnx_int8_L128.json
+bacc.B.128.onnxruntime.pb	1.00	results/accuracy_bert/B_onnx_int8_L128.json
+bacc.B.128.openvino.seq	128	results/accuracy_bert/B_openvino_int8_L128.json
+bacc.B.128.openvino.f	84.75	results/accuracy_bert/B_openvino_int8_L128.json
+bacc.B.128.openvino.i	85.21	results/accuracy_bert/B_openvino_int8_L128.json
+bacc.B.128.openvino.d	+0.46	results/accuracy_bert/B_openvino_int8_L128.json
+bacc.B.128.openvino.lo	+0.11	results/accuracy_bert/B_openvino_int8_L128.json
+bacc.B.128.openvino.hi	+0.92	results/accuracy_bert/B_openvino_int8_L128.json
+bacc.B.128.openvino.of	0	results/accuracy_bert/B_openvino_int8_L128.json
+bacc.B.128.openvino.oi	4	results/accuracy_bert/B_openvino_int8_L128.json
+bacc.B.128.openvino.p	0.125	results/accuracy_bert/B_openvino_int8_L128.json
+bacc.B.128.openvino.pb	1.00	results/accuracy_bert/B_openvino_int8_L128.json
+prof.pytorch.fp32.b1.b	1	results/profile/raw/pytorch_fp32_b1.json
+prof.pytorch.fp32.b1.convms	11.8	results/profile/raw/pytorch_fp32_b1.json
+prof.pytorch.fp32.b1.conv	84.4	results/profile/raw/pytorch_fp32_b1.json
+prof.pytorch.fp32.b1.qdq	0.0	results/profile/raw/pytorch_fp32_b1.json
+prof.pytorch.fp32.b1.tot	14.0	results/profile/raw/pytorch_fp32_b1.json
+prof.pytorch.int8.b1.b	1	results/profile/raw/pytorch_int8_b1.json
+prof.pytorch.int8.b1.convms	5.2	results/profile/raw/pytorch_int8_b1.json
+prof.pytorch.int8.b1.conv	94.4	results/profile/raw/pytorch_int8_b1.json
+prof.pytorch.int8.b1.qdq	0.3	results/profile/raw/pytorch_int8_b1.json
+prof.pytorch.int8.b1.tot	5.5	results/profile/raw/pytorch_int8_b1.json
+prof.onnxruntime.fp32.b1.b	1	results/profile/raw/onnx_fp32_b1.json
+prof.onnxruntime.fp32.b1.convms	8.9	results/profile/raw/onnx_fp32_b1.json
+prof.onnxruntime.fp32.b1.conv	98.2	results/profile/raw/onnx_fp32_b1.json
+prof.onnxruntime.fp32.b1.qdq	0.0	results/profile/raw/onnx_fp32_b1.json
+prof.onnxruntime.fp32.b1.tot	9.0	results/profile/raw/onnx_fp32_b1.json
+prof.onnxruntime.int8.b1.b	1	results/profile/raw/onnx_int8_b1.json
+prof.onnxruntime.int8.b1.convms	3.2	results/profile/raw/onnx_int8_b1.json
+prof.onnxruntime.int8.b1.conv	89.1	results/profile/raw/onnx_int8_b1.json
+prof.onnxruntime.int8.b1.qdq	0.8	results/profile/raw/onnx_int8_b1.json
+prof.onnxruntime.int8.b1.tot	3.6	results/profile/raw/onnx_int8_b1.json
+prof.openvino.fp32.b1.b	1	results/profile/raw/openvino_fp32_b1.json
+prof.openvino.fp32.b1.convms	9.0	results/profile/raw/openvino_fp32_b1.json
+prof.openvino.fp32.b1.conv	97.2	results/profile/raw/openvino_fp32_b1.json
+prof.openvino.fp32.b1.qdq	0.8	results/profile/raw/openvino_fp32_b1.json
+prof.openvino.fp32.b1.tot	9.2	results/profile/raw/openvino_fp32_b1.json
+prof.openvino.int8.b1.b	1	results/profile/raw/openvino_int8_b1.json
+prof.openvino.int8.b1.convms	2.6	results/profile/raw/openvino_int8_b1.json
+prof.openvino.int8.b1.conv	93.7	results/profile/raw/openvino_int8_b1.json
+prof.openvino.int8.b1.qdq	1.7	results/profile/raw/openvino_int8_b1.json
+prof.openvino.int8.b1.tot	2.7	results/profile/raw/openvino_int8_b1.json
+prof.pytorch.fp32.b32.b	32	results/profile/raw/pytorch_fp32_b32.json
+prof.pytorch.fp32.b32.convms	303.6	results/profile/raw/pytorch_fp32_b32.json
+prof.pytorch.fp32.b32.conv	80.8	results/profile/raw/pytorch_fp32_b32.json
+prof.pytorch.fp32.b32.qdq	0.0	results/profile/raw/pytorch_fp32_b32.json
+prof.pytorch.fp32.b32.tot	375.8	results/profile/raw/pytorch_fp32_b32.json
+prof.pytorch.int8.b32.b	32	results/profile/raw/pytorch_int8_b32.json
+prof.pytorch.int8.b32.convms	150.4	results/profile/raw/pytorch_int8_b32.json
+prof.pytorch.int8.b32.conv	97.1	results/profile/raw/pytorch_int8_b32.json
+prof.pytorch.int8.b32.qdq	0.5	results/profile/raw/pytorch_int8_b32.json
+prof.pytorch.int8.b32.tot	154.9	results/profile/raw/pytorch_int8_b32.json
+prof.onnxruntime.fp32.b32.b	32	results/profile/raw/onnx_fp32_b32.json
+prof.onnxruntime.fp32.b32.convms	242.3	results/profile/raw/onnx_fp32_b32.json
+prof.onnxruntime.fp32.b32.conv	98.5	results/profile/raw/onnx_fp32_b32.json
+prof.onnxruntime.fp32.b32.qdq	0.0	results/profile/raw/onnx_fp32_b32.json
+prof.onnxruntime.fp32.b32.tot	246.0	results/profile/raw/onnx_fp32_b32.json
+prof.onnxruntime.int8.b32.b	32	results/profile/raw/onnx_int8_b32.json
+prof.onnxruntime.int8.b32.convms	75.0	results/profile/raw/onnx_int8_b32.json
+prof.onnxruntime.int8.b32.conv	92.2	results/profile/raw/onnx_int8_b32.json
+prof.onnxruntime.int8.b32.qdq	0.8	results/profile/raw/onnx_int8_b32.json
+prof.onnxruntime.int8.b32.tot	81.3	results/profile/raw/onnx_int8_b32.json
+prof.openvino.fp32.b32.b	32	results/profile/raw/openvino_fp32_b32.json
+prof.openvino.fp32.b32.convms	252.4	results/profile/raw/openvino_fp32_b32.json
+prof.openvino.fp32.b32.conv	97.7	results/profile/raw/openvino_fp32_b32.json
+prof.openvino.fp32.b32.qdq	0.6	results/profile/raw/openvino_fp32_b32.json
+prof.openvino.fp32.b32.tot	258.4	results/profile/raw/openvino_fp32_b32.json
+prof.openvino.int8.b32.b	32	results/profile/raw/openvino_int8_b32.json
+prof.openvino.int8.b32.convms	69.9	results/profile/raw/openvino_int8_b32.json
+prof.openvino.int8.b32.conv	96.8	results/profile/raw/openvino_int8_b32.json
+prof.openvino.int8.b32.qdq	0.6	results/profile/raw/openvino_int8_b32.json
+prof.openvino.int8.b32.tot	72.2	results/profile/raw/openvino_int8_b32.json
+smt.pytorch.b1.b	1	results/phase1/summary.json
+smt.pytorch.b1.a	13.5	results/phase1/summary.json
+smt.pytorch.b1.c	13.4	results/phase2/summary.json
+smt.pytorch.b8.b	8	results/phase1/summary.json
+smt.pytorch.b8.a	94.8	results/phase1/summary.json
+smt.pytorch.b8.c	90.0	results/phase2/summary.json
+smt.onnxruntime.b1.b	1	results/phase1/summary.json
+smt.onnxruntime.b1.a	8.9	results/phase1/summary.json
+smt.onnxruntime.b1.c	8.2	results/phase2/summary.json
+smt.openvino.b1.b	1	results/phase1/summary.json
+smt.openvino.b1.a	9.0	results/phase1/summary.json
+smt.openvino.b1.c	8.7	results/phase2/summary.json
+smt.openvino.b32.b	32	results/phase1/summary.json
+smt.openvino.b32.a	258.3	results/phase1/summary.json
+smt.openvino.b32.c	242.9	results/phase2/summary.json
+kern.fp32.brgconv_avx2_f32	17	results/profile/raw/openvino_fp32_b1.json
+kern.fp32.brgconv_avx2_1x1_f32	3	results/profile/raw/openvino_fp32_b1.json
+kern.int8.brgconv_avx2_I8	16	results/profile/raw/openvino_int8_b1.json
+kern.int8.brgconv_avx2_1x1_I8	3	results/profile/raw/openvino_int8_b1.json
+kern.int8.jit_avx2_I8	1	results/profile/raw/openvino_int8_b1.json
+
+# literal numbers in prose (allow-listed, not result values)
+literal	reason
+1	batch size label
+2	list/ordinal words
+3	frameworks count word
+4	E-core count (hardware fact)
+6	P-core count / threads (hardware fact, = m.threads)
+8	batch size label
+10	warmup iterations (bench/common.py run_repeat warmup=10)
+12	logical CPUs on the 6 P-cores with SMT (hardware fact)
+16	logical CPUs reported by lscpu (hardware fact)
+32	sequence length / batch size labels
+60	cooldown target in degrees C (bench/common.py cooldown 60.0); also seconds timeouts not used
+95	confidence level of the bootstrap interval (percentiles 2.5 and 97.5 in bench/accuracy_compare.py, bench/bert_accuracy_compare.py)
+128	sequence length label
+180	cooldown max wait in seconds (bench/common.py)
+250	frequency sampling interval in ms (bench/common.py FreqSampler)
+300	calibration images/sentences (bench/quant/*.py, bench/bert_common.py N_CALIB)
+1000	ResNet evaluation sample size (data prep; also results/accuracy n)

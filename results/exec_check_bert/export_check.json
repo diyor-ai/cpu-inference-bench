@@ -1,0 +1,99 @@
+{
+  "n_sentences": 64,
+  "what": "max |logit diff| ONNX Runtime FP32 vs PyTorch FP32",
+  "cases": [
+    {
+      "model": "A",
+      "seq": 32,
+      "batch": 1,
+      "max_abs_diff": 7.3909759521484375e-06
+    },
+    {
+      "model": "A",
+      "seq": 32,
+      "batch": 8,
+      "max_abs_diff": 8.225440979003906e-06
+    },
+    {
+      "model": "A",
+      "seq": 128,
+      "batch": 1,
+      "max_abs_diff": 8.344650268554688e-06
+    },
+    {
+      "model": "A",
+      "seq": 128,
+      "batch": 8,
+      "max_abs_diff": 9.5367431640625e-06
+    },
+    {
+      "model": "B",
+      "seq": 32,
+      "batch": 1,
+      "max_abs_diff": 1.9073486328125e-06
+    },
+    {
+      "model": "B",
+      "seq": 32,
+      "batch": 8,
+      "max_abs_diff": 3.3974647521972656e-06
+    },
+    {
+      "model": "B",
+      "seq": 128,
+      "batch": 1,
+      "max_abs_diff": 2.1457672119140625e-06
+    },
+    {
+      "model": "B",
+      "seq": 128,
+      "batch": 8,
+      "max_abs_diff": 1.9073486328125e-06
+    }
+  ],
+  "max_abs_diff_A": 9.5367431640625e-06,
+  "max_abs_diff_B": 3.3974647521972656e-06,
+  "env": {
+    "cpu": "12th Gen Intel(R) Core(TM) i7-12650H",
+    "python": "3.12.15",
+    "affinity": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10
+    ],
+    "governor": "powersave",
+    "epp": "balance_performance",
+    "CUDA_VISIBLE_DEVICES": null,
+    "online_cpus": "0-15",
+    "no_turbo": "0",
+    "epp_per_cpu": {
+      "0": "balance_performance",
+      "2": "balance_performance",
+      "4": "balance_performance",
+      "6": "balance_performance",
+      "8": "balance_performance",
+      "10": "balance_performance"
+    },
+    "scaling_min_khz": {
+      "0": "400000",
+      "2": "400000",
+      "4": "400000",
+      "6": "400000",
+      "8": "400000",
+      "10": "400000"
+    },
+    "scaling_max_khz": {
+      "0": "4600000",
+      "2": "4600000",
+      "4": "4700000",
+      "6": "4700000",
+      "8": "4600000",
+      "10": "4600000"
+    },
+    "rapl_pl1_uw": "45000000",
+    "rapl_pl2_uw": "115000000"
+  }
+}
