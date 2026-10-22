@@ -92,6 +92,7 @@ gl.rn.pytorch.bsp	1.61	results/bert/summary.json
 gl.rn.pytorch.bd	−1.61	results/accuracy_bert/A_pytorch_int8_L128.json
 gl.rn.pytorch.blo	−3.10	results/accuracy_bert/A_pytorch_int8_L128.json
 gl.rn.pytorch.bhi	−0.23	results/accuracy_bert/A_pytorch_int8_L128.json
+gl.rn.pytorch.bp	0.038	results/accuracy_bert/A_pytorch_int8_L128.json
 gl.rn.onnxruntime.f	8.9	results/stage2/summary.json
 gl.rn.onnxruntime.i	3.2	results/stage2/summary.json
 gl.rn.onnxruntime.sp	2.74	results/stage2/summary.json

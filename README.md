@@ -12,7 +12,7 @@
 | ResNet-18, batch 1: INT8 p50 (lowest in bold) | 5.8 ms (172 img/s) | 3.2 ms (309 img/s) | **2.6 ms (386 img/s)** |
 | ResNet-18 FP32, batch 1: speedup vs PyTorch | — | 1.52× | 1.51× |
 | BERT A, seq 128, batch 1: INT8 speedup vs FP32 | 1.61× | 2.21× | n/a (FP32 row unstable; INT8 10.3 ms) |
-| BERT A, seq 128 top-1 change INT8 − FP32 (pt, 95% CI) | −1.61 [−3.10, −0.23] | −0.57 [−1.49, +0.34] | +0.23 [−0.23, +0.69] |
+| BERT A, seq 128 top-1 change INT8 − FP32 (pt, 95% CI) | −1.61 [−3.10, −0.23]; raw p=0.038, not significant after Bonferroni | −0.57 [−1.49, +0.34] | +0.23 [−0.23, +0.69] |
 
 Conditions: 12th Gen Intel(R) Core(TM) i7-12650H, six P-cores pinned with SMT off, fixed 2600 MHz, 6 threads, p50 over 5 repeats × 100 iterations; ratios only between stable rows.
 INT8 = each framework's standard INT8 path (not like-for-like); ResNet-18 accuracy on a 1000-image sample, BERT on the 872-sentence SST-2 validation set.

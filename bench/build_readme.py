@@ -276,6 +276,9 @@ def t_glance():
         cells[fw]["bsp"] = (cell(k+".bsp", bf["p50_ms"] / bi["p50_ms"], ".2f", BT) + "×") if bf["stable"] and bi["stable"] else f"n/a (FP32 row unstable; INT8 {cell(k+'.bi', bi['p50_ms'], '.1f', BT)} ms)"
         b_ = [x for x in bacc if x["model"] == "A" and x["seq"] == 128 and x["framework"] == fw][0]
         cells[fw]["bacc"] = f"{cell(k+'.bd', b_['diff'], '+.2f', b_['src'])} [{cell(k+'.blo', b_['lo'], '+.2f', b_['src'])}, {cell(k+'.bhi', b_['hi'], '+.2f', b_['src'])}]"
+        if b_["p"] < 0.05:   # nominally significant row: say so in the cell, and that it does not survive correction (asserted above: all p_bonf >= 0.05)
+            assert b_["p_bonf"] >= 0.05
+            cells[fw]["bacc"] += f"; raw p={cell(k+'.bp', b_['p'], '.3f', b_['src'])}, not significant after Bonferroni"
     best = min(FW, key=lambda f: float(REG.items[f"gl.rn.{f}.ims"]["value"]))
     assert best == "openvino"
     def ibest(fw):
