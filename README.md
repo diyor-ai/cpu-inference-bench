@@ -1,5 +1,7 @@
 # CPU inference benchmark: PyTorch vs ONNX Runtime vs OpenVINO, FP32 vs INT8
 
+[![CI](https://github.com/diyor-ai/cpu-inference-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/diyor-ai/cpu-inference-bench/actions/workflows/ci.yml)
+
 > Generated from `docs/README.template.md` by `bench/build_readme.py`. Every number below is read from `results/**/*.json`
 > (list with sources: `docs/readme_numbers.tsv`).
 
@@ -264,6 +266,8 @@ Data and models are **not** included in this repository. The code is MIT-license
 
 Pinned environments (`uv pip freeze`): `requirements/main.txt` (main venv `.venv`; the `+cpu` PyTorch builds come from the PyTorch CPU wheel index) and `requirements/quant.txt`
 (`.venv-quant`, used only for OpenVINO/NNCF quantization because its NumPy pin differs).
+
+CI checks the README against `results/*.json` and runs unit tests; the benchmarks themselves cannot run on shared GitHub runners (no pinned cores, fixed clocks or SMT control). CI installs `requirements/ci.txt` (NumPy and pandas pinned to the versions in `requirements/main.txt`, plus pytest).
 
 ```bash
 uv venv .venv && uv pip install --python .venv/bin/python -r requirements/main.txt --extra-index-url https://download.pytorch.org/whl/cpu

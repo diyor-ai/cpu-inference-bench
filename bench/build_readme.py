@@ -188,20 +188,14 @@ for fw in FW:
         f, i = pair(D["s2"], framework=fw, batch=b)
         REG.add(f"hd.s2.{fw}.b{b}.sp", f["p50_ms"] / i["p50_ms"], ".2f", S2)
 
-# archived (invalid / superseded) runs: numbers derived from the archived JSON, never edited
-_pairs = []
-for _f in sorted((rd.R / "archive_noisy_first_attempt").glob("*_run2.json")):
-    _a = rd.jload(Path(str(_f).replace("_run2", "")))["results"]; _b = rd.jload(_f)["results"]
-    _pairs += [(x["p50_ms"], y["p50_ms"]) for x, y in zip(_a, _b)]
-REG.add("arch.noisy_pairs", len(_pairs), "i", "results/archive_noisy_first_attempt/*.json (run vs run2 per framework/threads/batch)")
-REG.add("arch.noisy_over", sum((max(a, b) - min(a, b)) / min(a, b) > 0.05 for a, b in _pairs), "i", "results/archive_noisy_first_attempt/*.json ((max-min)/min > 5%)")
-_p3 = rd.jload("results/archive_pilot_3000mhz/summary.json")
-REG.add("arch.p3000_rows", len(_p3), "i", "results/archive_pilot_3000mhz/summary.json")
-REG.add("arch.p3000_throttled", sum(r["throttled"] for r in _p3), "i", "results/archive_pilot_3000mhz/summary.json (throttled flag)")
-REG.add("arch.p3000_mhz", 3000, "i", "results/archive_pilot_3000mhz/summary.json (freq_mean_mhz ~2995; cap 3000000 kHz)")
-_bug = [rd.jload(f"results/archive_bert_tokenizer_bug/{n}_{fw}_fp32_L128.json")["acc"] for n in "AB" for fw in ("pytorch", "onnx", "openvino")]
-REG.add("arch.bugacc", _bug[0], ".2f", "results/archive_bert_tokenizer_bug/*.json (all six identical)")
-assert len(set(_bug)) == 1
+# archived (invalid / superseded) runs: numbers come from the tracked results/archive_summary.json (derived by bench/archive_summary.py from the local archives)
+_AS = rd.jload("results/archive_summary.json"); _AF = "results/archive_summary.json"
+REG.add("arch.noisy_pairs", _AS["noisy_first_attempt"]["pairs"], "i", _AF + " noisy_first_attempt.pairs (from results/archive_noisy_first_attempt, local)")
+REG.add("arch.noisy_over", _AS["noisy_first_attempt"]["pairs_over_5pct"], "i", _AF + " noisy_first_attempt.pairs_over_5pct")
+REG.add("arch.p3000_rows", _AS["pilot_3000mhz"]["rows"], "i", _AF + " pilot_3000mhz.rows")
+REG.add("arch.p3000_throttled", _AS["pilot_3000mhz"]["throttled_rows"], "i", _AF + " pilot_3000mhz.throttled_rows")
+REG.add("arch.p3000_mhz", _AS["pilot_3000mhz"]["cap_mhz"], "i", _AF + " pilot_3000mhz.cap_mhz")
+REG.add("arch.bugacc", _AS["bert_tokenizer_bug"]["acc_all_runs"], ".2f", _AF + " bert_tokenizer_bug.acc_all_runs")
 
 # ---- claims made in the prose are asserted against the data (build fails if the data contradicts the text)
 def _pairs_all(rows, extra=()):

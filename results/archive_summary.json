@@ -1,0 +1,19 @@
+{
+  "noisy_first_attempt": {
+    "source": "results/archive_noisy_first_attempt/*.json (local archive)",
+    "pairs": 18,
+    "pairs_over_5pct": 12,
+    "rule": "(max - min) / min of run vs run2 p50 > 5%"
+  },
+  "pilot_3000mhz": {
+    "source": "results/archive_pilot_3000mhz/summary.json (local archive)",
+    "rows": 4,
+    "throttled_rows": 2,
+    "cap_mhz": 3000
+  },
+  "bert_tokenizer_bug": {
+    "source": "results/archive_bert_tokenizer_bug/*.json (local archive)",
+    "runs": 6,
+    "acc_all_runs": 49.08
+  }
+}
